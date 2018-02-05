@@ -1,0 +1,680 @@
+%FOR de-macro-ing
+
+%LETTERS
+
+%UPPERCASE
+\newcommand{\sA}{\mathscr{A}}
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\A}{\mathbb{A}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\sC}{\mathcal{C}}%deprecated
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\sD}{\mathscr{D}}
+\newcommand{\mD}{\mathfrak D}
+\newcommand{\cE}{\mathscr{E}}%deprecated
+\newcommand{\sE}{\mathscr{E}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\EE}{\mathop{\mathbb E}}
+%\scalebox{1.25}{$\mathbb E$}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\cF}{\mathscr{F}}%deprecated.
+\newcommand{\sF}{\mathscr{F}}
+\newcommand{\G}{\mathbb{G}}
+\newcommand{\cG}{\mathscr{G}}%deprecated.
+\newcommand{\sG}{\mathscr{G}}
+\newcommand{\cH}{\mathscr H}%deprecated
+\newcommand{\sH}{\mathscr H}
+\newcommand{\Hq}{\mathbb{H}}
+\newcommand{\bfI}{\mathbf{I}}
+\newcommand{\I}{\mathbb{I}}
+\newcommand{\cI}{\mathscr{I}}%deprecated
+\newcommand{\sI}{\mathscr{I}}
+\newcommand{\cJ}{\mathscr{J}}
+\newcommand{\cL}{\mathscr{L}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\fN}{\mathfrak{N}}
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\Pj}{\mathbb{P}}
+\newcommand{\mP}{\mathfrak{P}}
+\newcommand{\mQ}{\mathfrak{Q}}
+%!
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\sO}{\mathscr{O}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\bS}{\mathbb{bS}}
+\newcommand{\T}{\mathbb{T}}
+\newcommand{\X}{\mathfrak{X}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\one}{\mathds{1}}
+%lowercase
+\newcommand{\mba}{\mathbf{a}}%idele a
+\newcommand{\ma}{\mathfrak{a}}%ideal a
+\newcommand{\mb}{\mathfrak{b}}
+\newcommand{\mc}{\mathfrak{c}}
+\newcommand{\mfd}{\mathfrak d}
+\newcommand{\mf}{\mathfrak{f}}
+\newcommand{\fg}{\mathfrak{g}}
+\newcommand{\vi}{\mathbf{i}}%vector i
+\newcommand{\vj}{\mathbf{j}}
+\newcommand{\vk}{\mathbf{k}}
+\newcommand{\mm}{\mathfrak{m}}%ideal m
+\newcommand{\mfp}{\mathfrak{p}}
+\newcommand{\mq}{\mathfrak{q}}
+\newcommand{\mr}{\mathfrak{r}}
+\newcommand{\mv}{\mathbf{v}}
+\newcommand{\mx}{\mathbf{x}}%idele x
+\newcommand{\my}{\mathbf{y}}
+%More sequences of letters
+\newcommand{\et}{_{\text{\'et}}}
+\newcommand{\Gm}{\mathbb{G}_m}
+\newcommand{\Fp}{\mathbb{F}_p}
+\newcommand{\fq}{\mathbb{F}_q}
+\newcommand{\fpb}{\ol{\mathbb{F}_p}}
+\newcommand{\fpt}{\mathbb{F}_p^{\times}}
+\newcommand{\fqt}{\mathbb{F}_q^{\times}}
+\newcommand{\Kt}{K^{\times}}
+\newcommand{\RP}{\mathbb{R}P}
+\newcommand{\qb}{\ol{\mathbb{Q}}}
+\newcommand{\qp}{\mathbb{Q}_p}
+\newcommand{\qpb}{\ol{\mathbb{Q}_p}}
+\newcommand{\ql}{\mathbb Q_{\ell}}
+\newcommand{\sll}{\mathfrak{sl}}
+\newcommand{\vl}{V_{\ell}}
+\newcommand{\zl}{\mathbb Z_{\ell}}
+\newcommand{\zp}{\mathbb Z_{p}}
+\newcommand{\zpz}{\mathbb Z/p\mathbb Z}
+%Shortcuts for greek letters
+\newcommand{\al}{\alpha}
+\newcommand{\be}{\beta}
+\newcommand{\ga}{\gamma}
+\newcommand{\Ga}{\Gamma}
+\newcommand{\de}{\delta}
+\newcommand{\De}{\Delta}
+\newcommand{\ep}{\varepsilon}
+\newcommand{\eph}{\frac{\varepsilon}{2}}
+\newcommand{\ept}{\frac{\varepsilon}{3}}
+\newcommand{\ka}{\kappa}
+\newcommand{\la}{\lambda}
+\newcommand{\La}{\Lambda}
+\newcommand{\ph}{\varphi}
+\newcommand{\Ph}{\Phi}
+\newcommand{\rh}{\rho}
+\newcommand{\te}{\theta}
+\newcommand{\Te}{\Theta}
+\newcommand{\vte}{\vartheta}
+\newcommand{\om}{\omega}
+\newcommand{\Om}{\Omega}
+\newcommand{\si}{\sigma}
+\newcommand{\Si}{\Sigma}
+\newcommand{\ze}{\zeta}
+
+%SYMBOLS
+
+%Shortcuts for symbols
+\newcommand{\nin}{\not\in}
+\newcommand{\opl}{\oplus}
+\newcommand{\bigopl}{\bigoplus}
+\newcommand{\ot}{\otimes}
+\newcommand{\bigot}{\bigotimes}
+\newcommand{\sub}{\subset}
+\newcommand{\subeq}{\subseteq}
+\newcommand{\supeq}{\supseteq}
+\newcommand{\nsubeq}{\not\subseteq}
+\newcommand{\nsupeq}{\not\supseteq}
+\newcommand{\nequiv}{\not\equiv}
+\newcommand{\bs}{\backslash}
+\newcommand{\iy}{\infty}
+\newcommand{\no}{\trianglelefteq}%normal subgroup
+\newcommand{\qeq}{\stackrel?=}
+\newcommand{\subsim}{\stackrel{\sub}{\sim}}
+\newcommand{\supsim}{\stackrel{\supset}{\sim}}
+\newcommand{\na}{\nabla}
+\newcommand{\mcv}{*_-}
+\newcommand{\dlim}{\varinjlim}
+\newcommand{\ilim}{\varprojlim}
+\newcommand{\gle}{\begin{array}{c}
+\ge\\
+\le
+\end{array}}
+\newcommand{\lge}{\begin{array}{c}
+\le\\
+\ge
+\end{array}}
+%\stackrel{-}{*}}%minus convoluion.
+
+%COMMON TIME-SAVERS
+
+%Fractions
+\newcommand{\rc}[1]{\frac{1}{#1}}
+\newcommand{\prc}[1]{\pa{\rc{#1}}}
+\newcommand{\ff}[2]{\left\lfloor\frac{#1}{#2}\right\rfloor}
+\newcommand{\cf}[2]{\left\lceil\frac{#1}{#2}\rceil\rfloor}
+\newcommand{\fc}[2]{\frac{#1}{#2}}
+\newcommand{\sfc}[2]{\sqrt{\frac{#1}{#2}}}
+\newcommand{\pf}[2]{\pa{\frac{#1}{#2}}}%Shortcut for fraction with parentheses
+\DeclareRobustCommand{\stl}{\genfrac\{\}{0pt}{}}
+
+\newcommand{\pd}[2]{\frac{\partial #1}{\partial #2}}%Partial derivatives
+\newcommand{\dd}[2]{\frac{d #1}{d #2}}
+\newcommand{\pdd}[1]{\frac{\partial}{\partial #1}}
+\newcommand{\ddd}[1]{\frac{d}{d #1}}
+\newcommand{\af}[2]{\ab{\fc{#1}{#2}}}
+\newcommand{\ddt}[2]{\frac{d^2 #1}{d {#2}^2}}
+\newcommand{\pdt}[2]{\frac{\partial^2 #1}{\partial {#2}^2}}
+\newcommand{\pdxy}[3]{\frac{\partial^2 #1}{\partial {#2}\partial {#3}}}
+\newcommand{\pl}{\partial}
+\newcommand{\nb}{\nabla}
+\newcommand{\onb}{\ol{\nabla}}
+\newcommand{\dy}{\,dy}
+\newcommand{\dx}{\,dx}
+
+%Arrows
+\newcommand{\lar}{\leftarrow}
+\newcommand{\ra}{\rightarrow}
+\newcommand{\dra}{\dashrightarrow}
+\newcommand{\lra}{\leftrightarrow}
+\newcommand{\rra}{\twoheadrightarrow}
+\newcommand{\hra}{\hookrightarrow}
+\newcommand{\tra}{\twoheadrightarrow}
+\newcommand{\send}{\mapsto}
+\newcommand{\xra}[1]{\xrightarrow{#1}}
+\newcommand{\xla}[1]{\xleftarrow{#1}}
+\newcommand{\xhra}[1]{\xhookrightarrow{#1}}
+\newcommand{\xlra}[1]{\xleftrightarrow{#1}}
+\newcommand{\xrc}{\xrightarrow{\cong}}
+\renewcommand{\cir}{\circlearrowright}
+\newcommand{\cil}{\circlearrowleft}
+
+%Brackets
+\newcommand{\ab}[1]{\left| {#1} \right|}
+\newcommand{\an}[1]{\left\langle {#1}\right\rangle}
+\newcommand{\ba}[1]{\left[ {#1} \right]}
+\newcommand{\bc}[1]{\left\{ {#1} \right\}}
+\newcommand{\bra}[1]{\langle{#1}|}
+\newcommand{\braa}[1]{\langle\langle{#1}|}
+\newcommand{\ce}[1]{\left\lceil {#1}\right\rceil}
+\newcommand{\fl}[1]{\left\lfloor {#1}\right\rfloor}
+\newcommand{\ro}[1]{\left\lfloor {#1}\right\rceil}
+\newcommand{\ket}[1]{|{#1}\rangle}
+\newcommand{\kett}[1]{|{#1}\rangle\rangle}
+\newcommand{\bk}[2]{\langle{#1}|{#2}\rangle}
+\newcommand{\braak}[2]{\langle\langle{#1}|{#2}\rangle\rangle}
+\newcommand{\kbb}[1]{|{#1}\rangle\langle{#1}|}
+\newcommand{\kb}[2]{|{#1}\rangle\langle{#2}|}
+\newcommand{\kettb}[2]{|{#1}\rangle\rangle\langle\langle{#2}|}
+\newcommand{\pa}[1]{\left( {#1} \right)}
+\newcommand{\pat}[1]{\left( \text{#1} \right)}
+\newcommand{\ve}[1]{\left\Vert {#1}\right\Vert}
+\newcommand{\rb}[1]{\left.{#1}\right|}
+\newcommand{\nl}[1]{\left\Vert #1 \right\Vert_{L^1}}
+\newcommand{\ad}{|\cdot|}
+\newcommand{\ved}{\ve{\cdot}}
+\newcommand{\set}[2]{\left\{{#1}:{#2}\right\}}
+\newcommand{\sett}[2]{\left\{\left.{#1}\right|{#2}\right\}}
+
+%under and overlines, etc.
+\newcommand{\ch}[1]{\check{#1}}
+\newcommand{\dch}[1]{\check{\check{#1}}}
+\newcommand{\olra}[1]{\overleftrightarrow{#1}}
+\newcommand{\ol}[1]{\overline{#1}}
+\newcommand{\ul}[1]{\underline{#1}}
+\newcommand{\ub}[2]{\underbrace{#1}_{#2}}
+\newcommand{\ora}[1]{\overrightarrow{#1}}
+\newcommand{\ura}[1]{\underrightarrow{#1}}
+\newcommand{\wt}[1]{\widetilde{#1}}
+\newcommand{\wh}[1]{\widehat{#1}}
+
+%other
+\newcommand{\fp}[1]{^{\underline{#1}}}%Falling power
+\newcommand{\rp}[1]{^{\overline{#1}}}
+\newcommand{\sh}{^{\sharp}}
+\newcommand{\ri}{\ddagger}%replace this with rosati involution
+\newcommand{\bit}{\{0,1\}}
+
+%TEXT
+\newcommand{\btih}[1]{\text{ by the induction hypothesis{#1}}}
+\newcommand{\bwoc}{by way of contradiction}
+\newcommand{\by}[1]{\text{by~(\ref{#1})}}
+\newcommand{\idk}{{\color{red}I don't know.} }
+\newcommand{\ore}{\text{ or }}
+\newcommand{\wog}{ without loss of generality }
+\newcommand{\Wog}{ Without loss of generality }
+\newcommand{\step}[1]{\noindent{\underline{Step {#1}:}}}
+\newcommand{\prt}[1]{\noindent{\underline{Part {#1}:}}}
+\newcommand{\tfae}{ the following are equivalent}
+\newcommand{\fabfm}{for all but finitely many }
+
+%FUNCTIONS
+%Functions, etc.
+\newcommand{\Abs}{(\text{Ab}/S)}
+\newcommand{\abk}{(\text{Ab}/k)}
+\newcommand{\abc}{(\text{Ab}/\C)}
+\newcommand{\Alb}{\operatorname{Alb}}
+\newcommand{\Ann}{\operatorname{Ann}}
+\newcommand{\Area}{\operatorname{Area}}
+\newcommand{\amax}{\operatorname{argmax}}
+\newcommand{\amin}{\operatorname{argmin}}
+\newcommand{\Ass}{\operatorname{Ass}}
+\newcommand{\Art}{\operatorname{Art}}
+\newcommand{\Aut}{\operatorname{Aut}}
+\newcommand{\avg}{\operatorname{avg}}
+\newcommand{\bias}{\operatorname{bias}}
+\newcommand{\Binom}{\operatorname{Binom}}
+\newcommand{\Bl}{\operatorname{Bl}}
+\newcommand{\Br}{\operatorname{Br}}
+\newcommand{\chr}{\operatorname{char}}
+\newcommand{\cis}{\operatorname{cis}}
+\newcommand{\cl}{\operatorname{Cl}}
+%\newcommand{\Cl}{C}%changed notation%this is confusing
+\newcommand{\Cl}{\operatorname{Cl}}
+\newcommand{\Coh}{\operatorname{Coh}}
+\newcommand{\Coinf}{\operatorname{Coinf}}
+\newcommand{\Coind}{\operatorname{Coind}}
+\newcommand{\coker}{\operatorname{coker}}
+\newcommand{\colim}{\operatorname{colim}}
+\newcommand{\Comp}{\operatorname{Comp}}
+\newcommand{\conv}{\operatorname{conv}}
+\newcommand{\oconv}{\ol{\conv}}
+\newcommand{\Cor}{\operatorname{Cor}}
+\newcommand{\Cov}{\operatorname{Cov}}
+\newcommand{\cro}{\operatorname{cr}}
+\newcommand{\degs}{\deg_{\text{s}}}%separable degree
+\newcommand{\Dec}{\operatorname{Dec}}
+\newcommand{\depth}{\operatorname{depth}}
+\newcommand{\Der}{\operatorname{Der}}
+\newcommand{\diag}{\operatorname{diag}}
+\newcommand{\diam}{\operatorname{diam}}
+\renewcommand{\div}{\operatorname{div}}
+\newcommand{\Dir}{\operatorname{Dir}}
+\newcommand{\Div}{\operatorname{Div}}
+\newcommand{\Disc}{\operatorname{Disc}}%discrepancy
+\newcommand{\disc}{\operatorname{disc}}%discriminant
+\newcommand{\dom}{\operatorname{dom}}
+\newcommand{\Ell}{\mathcal{E}{\rm{ll}}}
+\newcommand{\Enc}{\operatorname{Enc}}
+\newcommand{\End}{\operatorname{End}}
+\newcommand{\Ext}{\operatorname{Ext}}
+\newcommand{\err}{\operatorname{err}}
+\newcommand{\ess}{\operatorname{ess}}
+\newcommand{\ext}{\operatorname{ext}}
+\newcommand{\pfcg}{(p\text{-FCGp}/k)}
+\newcommand{\fcg}{(\text{FCGp}/k)}
+\newcommand{\Frac}{\operatorname{Frac}}
+\newcommand{\Frob}{\operatorname{Frob}}
+\newcommand{\Fun}{\operatorname{Fun}}
+\newcommand{\FS}{\operatorname{FS}}
+\newcommand{\Gal}{\operatorname{Gal}}
+\newcommand{\grad}{\operatorname{grad}}
+\newcommand{\GL}{\operatorname{GL}}
+\newcommand{\gps}{(\text{Gp}/S)}
+\newcommand{\Hess}{\operatorname{Hess}}
+\newcommand{\Het}{H_{\text{\'et}}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\Homeo}{\operatorname{Homeo}}
+\newcommand{\chom}{\mathscr{H}om}
+\newcommand{\Homc}{\operatorname{Hom}_{\text{cont}}}
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\Id}{\operatorname{Id}}
+\newcommand{\im}{\text{im}}
+\newcommand{\imp}{\im^{\text{pre}}}
+\newcommand{\Ind}{\operatorname{Ind}}
+\newcommand{\Inf}{\operatorname{Inf}}
+\newcommand{\inv}{\operatorname{inv}}
+\newcommand{\Isoc}{\operatorname{Isoc}}
+\newcommand{\Isog}{\operatorname{Isog}}
+\newcommand{\Isom}{\operatorname{Isom}}
+\newcommand{\Jac}{\operatorname{Jac}}
+\newcommand{\li}{\operatorname{li}}
+\newcommand{\Li}{\operatorname{li}}
+\newcommand{\Lie}{\operatorname{Lie}}
+\newcommand{\Line}{\operatorname{Line}}
+\newcommand{\lcm}{\operatorname{lcm}}
+\newcommand{\Mat}{\operatorname{Mat}}
+\newcommand{\Mod}{\operatorname{Mod}}
+\newcommand{\Dmod}{\Mod_{W[F,V]}^{\text{fl}}}
+\newcommand{\nil}{\operatorname{nil}}
+\newcommand{\nm}{\operatorname{Nm}}
+\newcommand{\NS}{\operatorname{NS}}
+\newcommand{\ord}{\operatorname{ord}}
+\newcommand{\PDer}{\operatorname{PDer}}
+\newcommand{\PGL}{\operatorname{PGL}}
+\newcommand{\Pic}{\operatorname{Pic}}
+\newcommand{\Pico}{\operatorname{Pic}^{\circ}}
+\newcommand{\Pois}{\operatorname{Pois}}
+\newcommand{\poly}{\operatorname{poly}}
+\newcommand{\polylog}{\operatorname{polylog}}
+\newcommand{\PSL}{\operatorname{PSL}}
+\newcommand{\Per}{\operatorname{Per}}
+\newcommand{\perm}{\operatorname{perm}}
+\newcommand{\PrePer}{\operatorname{PrePer}}
+\newcommand{\Prob}{\operatorname{Prob}}
+\newcommand{\Proj}{\operatorname{Proj}}
+\newcommand{\Prj}{\textbf{Proj}}
+\newcommand{\QCoh}{\operatorname{QCoh}}
+\newcommand{\Rad}{\operatorname{Rad}}
+\newcommand{\range}{\operatorname{range}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\red}{\operatorname{red}}
+\newcommand{\Reg}{\operatorname{Reg}}
+\newcommand{\Res}{\operatorname{Res}}
+\newcommand{\Ric}{\operatorname{Ric}} %Ricci curvature
+\newcommand{\rot}{\operatorname{rot}}
+\newcommand{\Scal}{\operatorname{Scal}} %Ricci curvature
+\newcommand{\schs}{(\text{Sch}/S)}
+\newcommand{\schk}{(\text{Sch}/k)}
+\newcommand{\se}{\text{se}}
+\newcommand{\srank}{\text{srank}}
+\newcommand{\hse}{\wh{\text{se}}}
+\newcommand{\sens}{\operatorname{sens}}
+\newcommand{\Set}{(\text{Set})}
+\newcommand{\sgn}{\operatorname{sign}}
+\newcommand{\sign}{\operatorname{sign}}
+\newcommand{\SL}{\operatorname{SL}}
+\newcommand{\SO}{\operatorname{SO}}
+\newcommand{\Spec}{\operatorname{Spec}}
+\newcommand{\Specf}[2]{\Spec\pa{\frac{k[{#1}]}{#2}}}
+\newcommand{\rspec}{\ul{\operatorname{Spec}}}
+\newcommand{\Spl}{\operatorname{Spl}}
+\newcommand{\spp}{\operatorname{sp}}
+\newcommand{\spn}{\operatorname{span}}
+\newcommand{\Stab}{\operatorname{Stab}}
+\newcommand{\SU}{\operatorname{SU}}
+\newcommand{\Supp}{\operatorname{Supp}}
+\newcommand{\ssupp}{\operatorname{sing}\operatorname{supp}}
+\newcommand{\Sym}{\operatorname{Sym}}
+\newcommand{\Th}{\operatorname{Th}}
+\newcommand{\Tor}{\operatorname{Tor}}
+\newcommand{\tor}{\operatorname{tor}}
+\newcommand{\Tr}{\text{Tr}}
+\newcommand{\tr}{\text{tr}}
+\newcommand{\val}{\text{val}}
+\newcommand{\Var}{\text{Var}}
+\newcommand{\var}{\text{var}}
+\newcommand{\vcong}{\operatorname{vcong}}
+\newcommand{\Vol}{\text{Vol}}
+\newcommand{\vol}{\text{vol}}
+\providecommand{\cal}[1]{\mathcal{#1}}
+\renewcommand{\cal}[1]{\mathcal{#1}}
+\providecommand{\bb}[1]{\mathbb{#1}}
+\renewcommand{\bb}[1]{\mathbb{#1}}
+
+%Text super/subscripts
+\newcommand{\abe}{^{\text{ab}}}
+\newcommand{\gal}{^{\text{gal}}}%galois closure
+\newcommand{\op}{^{\text{op}}}
+\newcommand{\pre}{^{\text{pre}}}
+\newcommand{\rd}{_{\text{red}}}
+\newcommand{\sep}{^{\text{sep}}}
+\newcommand{\tp}{^{\text{top}}}
+\newcommand{\tors}{_{\text{tors}}}
+\newcommand{\ur}{^{\text{ur}}}
+\newcommand{\urt}{^{\text{ur}\times}}
+
+%COMMUTATIVE DIAGRAMS
+
+%Commutative diagram shortcuts
+\newcommand{\commsq}[8]{\xymatrix{#1\ar[r]^-{#6}\ar[d]_{#5} &#2\ar[d]^{#7} \\ #3 \ar[r]^-{#8} & #4}}
+%Makes a diagram like this
+%1->2
+%|    |
+%3->4
+%Arguments 5, 6, 7, 8 on arrows
+%  6
+%5  7
+%  8
+\newcommand{\pull}[9]{
+#1\ar@/_/[ddr]_{#2} \ar@{.>}[rd]^{#3} \ar@/^/[rrd]^{#4} & &\\
+& #5\ar[r]^{#6}\ar[d]^{#8} &#7\ar[d]^{#9} \\}
+\newcommand{\back}[3]{& #1 \ar[r]^{#2} & #3}
+%Syntax:\pull 123456789 \back ABC
+%1=upper left-hand corner
+%2,3,4=arrows from upper LH corner, going down, diagonal, right
+%5,6,7=top row (6 on arrow)
+%8,9=middle rows (on arrows)
+%A,B,C=bottom row
+%composition
+\newcommand{\cmp}[9]{
+\xymatrix{
+#1 \ar[r]^{#4}{#5} \ar@/_2pc/[rr]^{#8}_{#9} & #2 \ar[r]^{#6}_{#7} & #3
+}
+}
+\newcommand{\ctr}[9]{
+\xymatrix{
+#1 \ar[rr]^{#4}_{#5}\ar[rd]^{#6}_{#7} && #2\ar[ld]_{#8}^{#9}\\
+& #3 &
+}
+}
+\newcommand{\ctrr}[9]{
+\xymatrix{
+#1 \ar[rr]^{#4}_{#5} && #2\\
+& #3 \ar[lu]_{#6}^{#7}\ar[ru]_{#8}^{#9}&
+}
+}
+
+\newcommand{\ctri}[9]{
+\xymatrix{
+#1 \ar[rr]^{#4}_{#5}\ar[rd]^{#6}_{#7} && #2\\
+& #3 \ar[ru]^{#8}_{#9}&
+}
+}
+\newcommand{\rcommsq}[8]{\xymatrix{#1 &#2\ar[l]_-{#6} \\ #3 \ar[u]^{#5} & #4 \ar[u]_{#7}\ar[l]_-{#8}}}
+
+
+%Arrow shortcuts
+\newcommand{\ha}[1]{\ar@{^(->}[#1]}
+\newcommand{\ls}[1]{\ar@{-}[#1]}
+\newcommand{\sj}[1]{\ar@{->>}[#1]}
+\newcommand{\aq}[1]{\ar@{=}[#1]}
+\newcommand{\acir}[1]{\ar@{}[#1]|-{\textstyle{\circlearrowright}}}
+\newcommand{\acil}[1]{\ar@{}[#1]|-{\textstyle{\circlearrowleft}}}
+\newcommand{\ard}[1]{\ar@{.>}[#1]}
+\newcommand{\mt}[1]{\ar@{|->}[#1]}
+\newcommand{\inm}[1]{\ar@{}[#1]|-{\in}}
+\newcommand{\inr}{\ar@{}[d]|-{\rotatebox[origin=c]{-90}{$\in$}}}
+\newcommand{\inl}{\ar@{}[u]|-{\rotatebox[origin=c]{90}{$\in$}}}
+
+%Other
+%\newcommand{\set}[2]{\left.\left\{{#1}\right|{#2}\right\}}
+%\newcommand{\sett}[2]{\left\{{#1}\left|{#2}\right\}\right.}
+
+%SUMS, ETC.
+\newcommand{\sumr}[2]{\sum_{\scriptsize \begin{array}{c}{#1}\\{#2}\end{array}}}%sum with 2 rows
+\newcommand{\prr}[2]{\prod_{\scriptsize \begin{array}{c}{#1}\\{#2}\end{array}}}%product with 2 rows
+\newcommand{\su}{\sum_{n=0}^{\iy}}
+\newcommand{\suo}{\sum_{n=1}^{\iy}}
+\newcommand{\sumo}[2]{\sum_{#1=1}^{#2}}
+\newcommand{\iiy}{\int_0^{\infty}}
+\newcommand{\iiiy}{\int_{-\infty}^{\infty}}
+\newcommand{\sui}{\sum_{i=1}^{n}}
+\newcommand{\suiy}{\sum_{i=1}^{\iy}}
+\newcommand{\cui}{\bigcup_{i=1}^n}
+\newcommand{\suj}{\sum_{j=1}^{n}}
+\newcommand{\suij}{\sum_{i,j}}
+\newcommand{\limn}{\lim_{n\to \infty}}
+
+%MATRICES
+
+%Matrices
+\newcommand{\coltwo}[2]{
+\begin{pmatrix}
+{#1}\\
+{#2}
+\end{pmatrix}}
+\newcommand{\colthree}[3]{
+\begin{pmatrix}
+{#1}\\
+{#2}\\
+{#3}
+\end{pmatrix}
+}
+\newcommand{\cth}[3]{
+\begin{pmatrix}
+{#1}\\
+{#2}\\
+{#3}
+\end{pmatrix}
+}
+\newcommand{\detm}[4]{
+\ab{
+\begin{matrix}
+{#1}&{#2}\\
+{#3}&{#4}
+\end{matrix}
+}}
+\newcommand{\sdetm}[4]{
+\ab{
+\begin{smallmatrix}
+{#1}&{#2}\\
+{#3}&{#4}
+\end{smallmatrix}
+}}
+\newcommand{\matt}[4]{
+\begin{pmatrix}
+{#1}&{#2}\\
+{#3}&{#4}
+\end{pmatrix}
+}
+\newcommand{\smatt}[4]{
+\left(\begin{smallmatrix} 
+{#1}&{#2}\\
+{#3}&{#4}
+\end{smallmatrix}\right)
+}
+
+\newcommand{\bt}[2]{
+\left\{\begin{matrix}
+\text{#1}\\
+\text{#2}
+\end{matrix}
+\right\}}
+\newcommand{\bth}[3]{
+\left\{\begin{matrix}
+\text{#1}\\
+\text{#2}\\
+\text{#3}
+\end{matrix}
+\right\}}
+
+%EQUATIONS
+\newcommand{\beq}[1]{\begin{equation}\llabel{#1}}
+\newcommand{\eeq}{\end{equation}}
+\newcommand{\bal}{\begin{align*}}
+\newcommand{\eal}{\end{align*}}%this doesn't work; i don't know why
+\newcommand{\ban}{\begin{align}}
+\newcommand{\ean}{\end{align}}
+\newcommand{\ig}[2]{\begin{center}\includegraphics[scale=#2]{#1}\end{center}}
+
+%COURSE-SPECIFIC
+
+%measure theory, analysis
+\newcommand{\am}{(a.e., $\mu$)}
+\newcommand{\ftla}[1]{\int e^{i\lambda\cdot x}{#1}\,d\lambda}
+\newcommand{\lime}{\lim_{\varepsilon\to 0}}
+
+%number theory
+\newcommand{\modt}[1]{\,(\text{mod}^{\times}\, {#1})}
+\newcommand{\tl}{T_{\ell}}
+ %multiplicative subgroup
+\newcommand{\zmod}[1]{\Z/{#1}\Z}
+\newcommand{\md}[1]{\,(\text{mod }#1)}
+\newcommand{\ks}[1]{K(\sqrt{#1})}
+\newcommand{\ksq}[1]{K(\sqrt{#1})/K}
+\newcommand{\nksq}[1]{\nm_{K(\sqrt{#1})/K}(K(\sqrt{#1})^{\times})}
+\newcommand{\mpp}{\mP/\mfp}
+
+%manifolds
+\newcommand{\cvd}{\frac{D}{\partial t}}
+\newcommand{\cvs}{\frac{D}{\partial s}}
+\newcommand{\np}[1]{\nabla_{\pd{}{#1}}}
+
+%algebraic geometry
+\newcommand{\av}{A^{\vee}}
+
+
+%arithmetic combinatorics
+\newcommand{\Deq}[1]{\Delta^{\times}_{#1}}
+
+%modular forms
+\newcommand{\GLAi}{\text{GL}_2(\mathbb A)_{\infty}}
+
+%noise sensitivity part iii essay
+\newcommand{\Dict}{\operatorname{\mathsf{Dict}}}
+\newcommand{\Maj}{\operatorname{\mathsf{Maj}}}
+\newcommand{\MAJ}{\operatorname{\mathsf{Maj}}}
+\newcommand{\Tribes}{\operatorname{\mathsf{Tribes}}}
+\newcommand{\Ns}{\operatorname{NS}}
+\newcommand{\DT}{\operatorname{\mathsf{DT}}}
+\newcommand{\DNF}{\operatorname{\mathsf{DNF}}}
+\newcommand{\CNF}{\operatorname{\mathsf{CNF}}}
+\newcommand{\Circuit}{\operatorname{\mathsf{Circuit}}}
+\newcommand{\Ac}{\mathsf{AC}}
+\newcommand{\EB}{\text{EB}}
+%comp complexity
+%complexity theory
+\newcommand{\ACC}{\operatorname{\mathsf{ACC}}}
+\newcommand{\BPP}{\mathsf{BPP}}
+\newcommand{\BPTIME}{\operatorname{\mathsf{BPTIME}}}
+\newcommand{\CLIQUE}{\operatorname{\mathsf{CLIQUE}}}
+\newcommand{\EXP}{\mathsf{EXP}}
+\newcommand{\NEXP}{\mathsf{NEXP}}
+\newcommand{\NP}{\operatorname{\mathsf{NP}}}
+\newcommand{\NTIME}{\operatorname{\mathsf{NTIME}}}
+\newcommand{\PCP}{\operatorname{\mathsf{PCP}}}
+\newcommand{\SAT}{\mathsf{SAT}}
+\newcommand{\SUBEXP}{\mathsf{SUBEXP}}
+\newcommand{\TIME}{\operatorname{\mathsf{TIME}}}
+\newcommand{\zz}{\textcircled{Z}}
+%statistics
+\newcommand{\hten}{\widehat{\theta_n}}
+
+%EDITING HELP
+%blu: key idea or concept. red: unresolved issue/question. 
+\newcommand{\blu}[1]{{\color{blue}#1}}
+\newcommand{\grn}[1]{{\color{green}#1}}
+\newcommand{\redd}[1]{{\color{red}#1}}
+\newcommand{\pur}[1]{{\color{purple}#1}}
+\newcommand{\oge}[1]{{\color{orange}#1}}
+\newcommand{\concept}[1]{#1}
+\newcommand{\fixme}[1]{{\color{red}#1}}
+\newcommand{\cary}[1]{{\color{purple}#1}}%deprecated
+%short for commentary
+\newcommand{\llabel}[1]{\label{#1}}
+\newcommand{\nref}[1]{\ref{#1}}
+%%%%%%%%%%%
+%Use the above when working on the document, so labels will be displayed by their theorems, and you can write reminders to yourself. Switch to the below commands when publishing.
+%%%%%%%%%%%
+%\newcommand{\fixme}[1]{}
+%\newcommand{\concept}[1]{{\color{blue}#1}}
+%\newcommand{\llabel}[1]{\label{#1}}
+%%%%%%%%%%%
+
+\newcommand{\itag}[1]{\index{#1}[\##1]}
+\newcommand{\ilbl}[1]{[#1]\index{#1}}
+\newcommand{\iadd}[1]{\index{#1} #1}
+\newcommand{\arxiv}[1]{\url{http://www.arxiv.org/abs/#1}}
+
+%markup
+\newcommand{\ivocab}[1]{\index{#1}\textbf{#1}}
+\newcommand{\vocab}[1]{\textbf{#1}} %also index automatically.
+\newcommand{\summq}[1]{\textbf{Summary Question: }#1}
+\newcommand{\keypt}[1]{{\it #1}}
+\newcommand{\subprob}[1]{\noindent\textbf{#1}\\}
+\newcommand{\qatable}[1]{\begin{center}
+    \begin{longtable}{ | p{5.5cm} | p{10cm} |}
+#1
+\end{longtable}
+\end{center}}
+
+\newcommand{\txtn}[1]{\textnormal{#1}}
+
+
+%Page breaks in equations
+\allowdisplaybreaks[2]
+
+%SHA
+\DeclareFontFamily{U}{wncy}{}
+    \DeclareFontShape{U}{wncy}{m}{n}{<->wncyr10}{}
+    \DeclareSymbolFont{mcy}{U}{wncy}{m}{n}
+    \DeclareMathSymbol{\Sh}{\mathord}{mcy}{"58} 

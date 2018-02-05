@@ -1,0 +1,27 @@
+\def\filepath{C:/Users/Owner/Dropbox/Math/templates}
+
+\input{\filepath/packages_article.tex}
+\input{\filepath/theorems_with_boxes.tex}
+\input{\filepath/macros.tex}
+\input{\filepath/formatting.tex}
+
+\pagestyle{fancy}
+\lhead{TITLE 1}
+\chead{} 
+\rhead{TITLE 2} 
+\lfoot{} 
+\cfoot{\thepage} 
+\rfoot{} 
+\renewcommand{\headrulewidth}{.3pt} 
+\setlength\voffset{0in}
+\setlength\textheight{648pt}
+
+\addbibresource{bib.bib}
+
+\begin{document}
+\section{Topic}
+
+%\input{chapters/1.tex}
+
+\printbibliography
+\end{document}

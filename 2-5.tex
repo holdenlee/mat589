@@ -1,0 +1,128 @@
+\chapter{Random graphs}
+
+\section{Models of random graphs}
+
+The simplest model is the Erd\H os-Renyi random graph $G(n,p)$. $n$ is the number of vertices, we are often interested in taking $n\to \iy$.
+
+Most questions about the Erd\H os-Renyi graph are known. When is it $k$-colorable is a rare question that isn't known.
+
+\begin{df}
+The Erd\H os-Renyi random graph $G(n,p)$ is a graph with $n$ vertices, where every two vertices are connected with an edge with probability $p$ independently.
+\end{df}
+The degree of a vertex has distribution $\text{Bin}(n-1,p)$ which has mean $\approx np$.
+
+To have a graph with more local structure, we allow $p$ to depend on $n$ rather than be constant. The sparse case is $G(n,\fc dn)$.
+
+\begin{df}
+The random $d$-regular graph is uniformly chosen over all $d$-regular graphs on $n$-labeled vertices.
+\end{df}
+More generally, a random graph with a given distribution $d_v$ is as follows: %draw $d_v$, the degree of vertex $v$, from a given degree distribution, then 
+choose a graph uniformly from all graphs with that degree distribution. 
+
+Two vertices are connected if there's a path of edges going from one to the other. 
+A graph splits into connected components. 
+We can consider local structure: the graph of vertices close to a given node.
+On the other hand, diameter is a global property.
+
+The degree distribution of $G(n,\fc dn)$ is $\text{Bin}(n-1,\fc dn)$, which is well-approximated by a Poisson distribution.
+\begin{align}
+\Pj(d_v=k) &= \binom nk \pf{d}{n}^k \pa{1-\fc dn}^{d-k-1}\\
+&= \fc{(n-1)\fp{k}}{k!} \fc{d^k}{n^k} \pa{1-\fc dn}^n \pa{1-\fc dn}^{-k-1}\\
+&\xra{n\to \iy} \fc{d^k}{e^{-d}}{k!} = \Pj[\text{Pois}(d)=k]
+\end{align}
+where $x\fp{y}:= x(x-1)\cdots (x-y+1)$.
+That's the distribution for one node; what about the empirical distribution for the whole graph?
+%\text{Pois}(d)
+%
+\begin{align}
+N_k &= \rc{n}\#\set{v\in V}{d_v=k}\\  
+\E N_k &= \rc n \sum_v \E \one_{d_v=k}.
+\end{align}
+I want this to be concentrated around the mean.
+
+Are the degrees of the vertices independent? No. Two vertices share an edge.
+
+I spend a lot of time taking things that aren't independent and showing that they behave as if they were independent.
+
+Let $|A|=n^{\rc 3}$. 
+Let $B$ be the event $\set{\exists u,v\in A}{(u,v)\in E}$, $A$ has an edge.
+\begin{align}
+\Pj(B) &\le \binom{n^{\rc 3}}2\fc dn \le \fc{dn^{\fc 23}}{n}\to 0
+\end{align}
+Most of the time there won't be vertices in $A$.
+We needed $|A|\ll n^{\rc 2}$ to make $B$ happen with low probability.
+ %this graph.
+Conditioned on $B^c$, the degrees $\{d_v\}_{v\in A}$ will be independent of each other, and $\text{Bin}(n-n^{\rc 3},\fc dn)\approx \text{Pois}(d)$. Then 
+\begin{align}
+\Pj\ba{\rc{n^{\rc 3}}\#\set{v\in A}{d_v=k} - \fc{d^ke^{-d}}{k!}> \fc{\de}2}&\to 0.
+%\le Ce^{-\de^2 n^{\rc 3}/2}
+\end{align}
+But I want the distribution on the entire graph, not just $A$, to be close to Poisson.
+
+One way is to split into groups of size $n^{\rc 3}$, and apply the above. For this we want $\Pj \to 0$ with some rate of convergence.
+
+Here's a simpler way.
+The sample mean is close to the population mean.
+For $n$ variables $d_v$, the mean of sampling (without replacement) $n^{\rc 3}$ goes to 0, 
+\begin{align}
+\Pj\ba{\ab{\rc n \sum_{v\in V} \one_{d_v=k} - \rc{n^{\rc 3}} \sum_{v\in V} \one_{d_v=k}}>\de}&\to 0.
+\end{align}
+To make this quantitative, use Azuma-Hoeffding to get this is $\le 2e^{-\de^2 n^{\rc 3}/2}$. We get $N_k\xra{P} \fc{d^ke^{-d}}{k!}$. 
+
+What about the maximum degree? What is the maximum of $n$ iid $\text{Pois}(d)$ variables. Because of the $k!$, the tails of Poisson decay faster than any exponential distribution. The maximum looks like $\fc{\ln n}{\ln \ln n}$. To check this, plug this in and use Stirling's approximation.
+
+For $k=\fc{\al\ln n}{\ln \ln n}$, 
+\begin{align}
+\Pj(\text{Pois}(d)=k) &=n^{-\al+o(1)}.
+\end{align}
+We actually want the same formula for the binomial distribution, but it holds by the same calculation.
+By a union bound,
+\begin{align}
+\Pj(\max_{v\in V} d_v > (1+\ep) \fc{\ln n}{\ln \ln n})&\le nn^{-(1+\ep)}\to 0.
+\end{align}•
+%We know how to bound for a single vertex; we think they are more or less independent, and behave like a collection of iid random variables.
+
+We have to think more for the other direction because we can't take a union bound.
+\begin{align}
+\Pj\pa{\max_{v\in V}d_v > (1-\ep)\fc{\ln n}{\ln \ln n}}\xra ? 0.
+\end{align}•
+We know how to bound for a single vertex; we think they are more or less independent, and behave like a collection of iid random variables.
+
+Partition $G$ into two sets $S,S^c$ of size $\fc n2$. For $v\in S$, let $\wt d_v:=\#\set{u\in S^c}{(u,v)\in E}$. 
+(The difference between a graph with $n$ vs. $\fc n2$ vertices is not very much.)
+We have $\wt d_v \sim \text{Bin}(\fc n2, \fc dn)$ is iid. Since this is approximately Poisson,
+\begin{align}
+\Pj\pa{\wt d_v>(1-\ep)\fc{\ln n}{\ln \ln n}} &\sim n^{-(1-\ep)+o(1)}\\
+\Pj\pa{\forall v\in S, \wt d_v\le (1-\ep) \fc{\ln n}{\ln \ln n}} &\le \pa{1-\fc{n^{\ep+o(1)}}{n}}^{\rc n2}\to 0
+\end{align}
+%$e^{-n^\ep}$
+In summary, we created some proxies that were independent, that doesn't change the answer.
+
+Hence $\fc{\max d_v}{\ln n/\ln\ln n}\to 1$.
+
+We showed multiplicative fluctuations tend to 0. In fact, $\max d_v$ takes 1 of 2 values with probability taking to 1.
+
+How about going further out? Is a vertex in a cycle of length $k$?
+%any 5 vertices in any order, equally likely to be a $k$-cycle.
+
+Let $C_k$ be the number of $k$-cycles in $G$. There are $\fc{n\fp{k}}{2k}$ ways of choosing $k$ vertices for a cycle (order matters); divide by $2k$ for symmetries. So
+\begin{align}
+\E C_k &= \pf{d}{n}^k \fc{n\fp k}{2k}\xra{n\to \iy} \fc{d^k}{2k}
+\end{align}
+which doesn't scale as $n$.
+Most vertices are not in a $k$-cycle, so locally, the graph looks like trees (locally treelike). This will be important in lots of things we do for the rest of the semester. 
+
+Maybe Erd\H os-Renyi graphs aren't the best models. It's not a good model for a social network unless you chose all your friends uniformly at random. If you have two friends, they're more likely to be friends with each other than uniformly chosen people.
+
+There are a lack of good network models that incorporate structures we expect to see.
+
+The law of $C_n$ is Poisson.
+
+%What is the law of $C_n$? 
+What about containment of more complicated graphs? Let $H$ be a connected graph. Then 
+\begin{align}
+\E C_H &\approx n^{V(H)}\pf{d}{n}^{E[H]}.
+\end{align}
+%constant number of time cycle
+We get lots of trees, some cycles, and no more complicated graphs as $n\to \iy$.
+

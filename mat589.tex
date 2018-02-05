@@ -1,0 +1,104 @@
+\def\filepath{templates}
+%\def\filepath{C:/Users/holden-lee/Dropbox/Math/templates}
+
+\input{\filepath/packages_book.tex}
+\input{\filepath/theorems_with_boxes.tex}
+\input{\filepath/macros.tex}
+\input{\filepath/formatting.tex}
+\input{\filepath/other.tex}
+\input{\filepath/theorem_num.tex}
+
+\def\name{Stochastic processes on graphs}
+
+
+\pagestyle{fancy}
+%\addtolength{\headwidth}{\marginparsep} %these change header-rule width
+%\addtolength{\headwidth}{\marginparwidth}
+\lhead{MAT589}
+\chead{} 
+\rhead{Stochastic processes on graphs} 
+\lfoot{} 
+\cfoot{\thepage} 
+\rfoot{} % !! Remember to change the problem set number
+\renewcommand{\headrulewidth}{.3pt} 
+%\renewcommand{\footrulewidth}{.3pt}
+\setlength\voffset{0in}
+%\setlength\textheight{648pt}
+
+\begin{document}
+%\input{\filepath/titlepage.tex}
+%\maketitle
+\title{Stochastic processes on graphs}
+\author{Lectures by Professor Allan Sly\\ Scribe: Holden Lee}
+\maketitle
+
+
+\tableofcontents
+
+%\startcontents
+%\printcontents{ }{-1}{}
+
+\chapter*{Introduction}
+
+%Princeton, Spring 2018. 
+
+We will cover:
+\begin{enumerate}
+\item
+Random graphs
+\begin{enumerate}
+\item
+Classical results
+\item
+Erd\H os-Renyi random graph
+\item
+Properties (connectivity, components, local structures)
+\end{enumerate}
+\item
+Stochastic processes/interacting particle systems
+\begin{enumerate}
+\item
+Spin systems (Ising or hard-core model)
+\item
+Infection, contact process, SIS, SIR
+\item
+Diffusion of information, cascades
+\end{enumerate}
+\item
+Random constraint satisfaction problems (CSPs). The canonical example is:
+\begin{enumerate}
+\item
+Coloring a random graph with $k$ colours.
+
+Here the variables are colours of vertices and the constraints are the edges: neighbours have different colours.
+
+The more constraints, the harder. 
+\end{enumerate}
+Statistical mechanics give a lot of predictions but not proofs.
+
+As density increases, there are fewer colorings. At first there is one large component; you can get from any coloring to any other through a path of valid colorings. 
+
+After a threshold, the component splits up into many clusters. This transition also seems to be the point where all the efficient algorithms (polytime in number of vertices) for finding a coloring break down. %The best ones all break here.
+
+Then there's another phase transition after which you have no more colorings.
+
+There is also a middle transition that tells you how many colorings you have.
+Not many of these predictions have actually been proved; there are just bounds.
+
+There are similar transitions for other problems like random $k$-SAT, largest independent set.
+\end{enumerate}
+
+%\setcounter{chapter}{1}
+\input{2-5.tex}
+%INSERT_HERE
+
+
+%\appendix
+%\input{distribution_chapters/a.tex}
+
+%\bibliographystyle{plain}
+%\bibliography{\filepath/refs}
+
+\printnomenclature
+\printindex
+\end{document}
