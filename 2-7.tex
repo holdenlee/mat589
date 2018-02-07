@@ -1,0 +1,178 @@
+I'd like to know more about the distribution of number of cycles, that they converge in distribution. 
+To do this I look at the moments.
+\begin{align}
+\E C_k &\to \fc{d^k}{2k} =: \mu_k\\
+\E (C_k)\fp2 &= \E C_k(C_k-1)\\
+&= \sum_{A\ne A'} I(A,A'\text{ $k$-cycles})\\
+&= \sum_{A,A' \text{disjoint} } I(A,A'\text{ $k$-cycles}) + \sum_{A\ne A', A\cap A'\ne \phi} I(A,A'\text{ $k$-cycles})
+\end{align}
+There's only a few ways two cycles  can intersect each other. Each constitutes another more complicated graph. We just showed that the expected number of more complicated graphs in our random graph will tend to 0.
+
+%The expected value of * is independent of whether $A$ is a cycle.
+The first term:
+\begin{align}
+\sum_{A\ne A'} I(A,A'\text{ $k$-cycles})
+&=\mu_k (\E\pat{\# $k$-cycles in $G(n-k,\fc dn)$}) = \mu_k^2.
+\end{align}•
+Take our random graph, take the $k$ vertices out and look at remaining $n-k$ vertices. As $n\to \iy$, the difference between $n$ and $n-k$ is negligible. 
+
+%In the limit, 
+If $A\cap A'\ne \phi$ then $V(A\cup A')-E(A\cup A')\le -1$ so the second term goes to 0. So $\E(C_k)\fp2\to \mu_k^2$ and in general $\E(C_k)\fp{\ell}\to \mu_k^\ell$.
+
+These are the moments of the Poisson: $\E (\text{Pois}(\mu))\fp{\ell}=\mu_k^\ell$ so $\E C_k^\ell \to \E \text{Pois}(\mu_k)\fp{\ell}$.
+
+If 2 variables have distributions with the same moments, are they the same? Not necessarily.
+There is another distribution with the same set of moments as the lognormal distribution $e^{N(0,1)}$. But if the tails decay exponentially, then it holds. The Poisson distribution has better than exponentially decaying tails. Thus the number of cycles converges in distribution to Poisson,
+\begin{align}
+C_k\xra d \text{Pois}(\mu_k).
+\end{align}•
+We can look at the number of 3-cycles, 4-cycles, etc.; they jointly converge to Poissons with corresponding means that are independent. E.g., asymptotially the number of 3-cycles and 4-cycles are independent. 
+\begin{align}
+(C_3,C_4,\ldots)\xra d\text{Independent }\text{Pois}(\mu_k).
+\end{align}•
+This will be surprisingly important in various spots. It comes up in a lot of calculations. If you work out the expected number of colorings, the number of cycles affects the answer in an important way, ex. the variance of colorings.
+
+\subsection{Configuration model}
+Picking a graph uniformly from a given degree distribution is hard to work with, so we use the configuration model.
+
+In this model, given a degree distribution $d_v$, node $v$ has $d_v$ ``half-edges'' coming out of it. Choose a uniform perfect matching of the half-edges. This may give a multi-graph, with self-loops or multiple edges. The graph is simple if it has no self-loops or multiple edges.
+
+\begin{lem}
+The distribution of a random graph drawn from the configuration model given that it is simple, is the distribution of a random graph drawn from the degree distribution:
+\begin{align}
+\Pj_{\text{config}} (\cdot | \text{simple}) =\fc{\Pj_{\text{config}}(A\cap \text{simple})}{\Pj\pat{simple}} =  \Pj_d(\cdot)
+\end{align}
+\end{lem}
+%\begin{proof}
+%The LHS is $$.
+
+\begin{clm}\label{clm:simple0}
+For $d$-regular degree sequences $d_v=d$, $\Pj_{\text{config}}\pat{simple}\to C_d>0$
+\end{clm}
+This actually holds for more general (ex. $d_v$ is chosen iid from some distribution, we just need it to have finite second moments).
+\begin{cor}\label{cor:config0}
+If $\Pj_{\text{config}}\xra{n\to \iy}0$, then $\Pj_d(A)\to 0$.
+\end{cor}
+%\end{proof}
+
+There's a lot of conditional independence in the matching in the configuration model.
+%There is some negative evens
+If I condition on some edges, what's left is a uniform matching on the remaining edges.
+
+%What's the probability that 
+\begin{proof}[Proof of Claim~\ref{clm:simple0}]
+On a $d$-regular random graph from the configuration model,
+\begin{align}
+\E C_k &= \fc{n\fp k}{2k} (d(d-1))^\ell \rc{dn-1}\rc{dn-3}\cdots \rc{dn-2k+1}\\
+&\asymp \fc{n\fp k}{2k} (d(d-1))^\ell \rc{(dn)^\ell}
+\to \fc{(d-1)^\ell}{2k}.
+\end{align}•
+We can do the same for higher moments, jointly, and get
+\begin{align}
+(C_1,C_2,\ldots ) \xra d (\text{independent }\text{Pois}(\mu_k)).
+\end{align}•
+$C_1,C_2$ are the number of self-loops and multiple edges and they are asymptotically independent, so 
+\begin{align}
+\Pj(C_1=0,C_2=0)&=e^{-\mu_1-\mu_2}>0.
+\end{align}
+\end{proof}
+Let's check one property of random $d$-regular graphs.
+
+\begin{thm}
+For $d\ge 3$, then $\Pj_d\pat{connected}\to 1$.
+\end{thm}
+For $d=2$ you get a union of cycles and you can calculate their distribution.
+\begin{proof}
+If $G$ is disconnected, we can break the set of vertices into $S$ and $S^c$, and all the edges in $S$ are matched with each other, and all the edges in $S^c$ are matched with each other.
+
+Let $M_n$ be the number of matchings of $n$ objects.
+Take a permutation of length $n$ and match the 1st and 2nd, 3rd and 4th, etc. For example, $(32)(65)(24)$. 
+Flipping pairs and interchanging pairs gives the same matching. Thus
+\begin{align}
+M_n &= \fc{n!}{2^{\fc n2} \pf{n}{2}!}
+\end{align}
+We use Stirling's approximation $n!\asymp \sqrt{2\pi n}n^n e^{-n}$. Plugging in, 
+\begin{align}
+M_n &= \fc{\sqrt{2\pi n}}{2^{\fc n2}\sqrt{2\pi \fc{n}{2}}\pf{n}{2}^{\fc n2} e^{-\fc n2}}\\
+&= \sqrt 2 n^{\fc n2} e^{-\fc n2}.
+\end{align}
+When $|S|=k$, the probability that $S,S^c$ is a cut is $\fc{M_{dk}M_{d(n-k)}}{M_{dn}}$. 
+Taking a union bound over all cuts,
+\begin{align}
+\Pj\pa{not connected}
+&\le \sumo k{\fc n2} \fc{2(dk)^{\fc{dk}2} (d(n-k))^{d(n-k)}e^{-\fc{dn}2}}{\sqrt 2 dn^{\fc{dn}2}e^{-\fc{dn}2}}\\
+&\le O(1) \sumo k{\fc n2}\rc{\sqrt k}\pf{k^k (n-k)^{n-k}}{n^n}^{\fc d2-1}\\
+&\le O(1) \sumo k{\fc n2} \rc{\sqrt k} \pf{k}{n}^{\pf{d-2}2 k}\to 0.
+\end{align}
+By Corollary~\ref{cor:config0}, $\Pj_d\pat{not connected}\to 0$. 
+\end{proof}
+We say ``with high probability'' (whp) to mean that the probability tends to 1 as $n\to \iy$.
+
+\subsection{Galton-Watson branching process}
+
+\begin{df}
+The Galton-Watson branching process with offspring distribution $X$ is a random tree defined as follows. Start with a root node; the number of children of each node is distributed according to $X$.
+\end{df}
+Galton was interested in eugenics. Where this came up: people have a surname, passed on male descendants. Will it live forever or die out? This was rediscovered multiple times, including during the first studies of nuclear chain reactions.
+
+We ask: what is the probability this is an infinite tree?
+
+Let $Z_n$ be the number of nodes in level $n$. Then
+\begin{align}
+Z_{n+1} &= \sum_{i=1}^{Z_n} X_{i,n}\\
+\E Z_{n+1} &=  \mu \E Z_n = \mu^{n+1}.
+\end{align}•
+
+If the expected number of offspring is $\mu<1$, then the population dies out with probability 1. The probability of survival is $p>0$ iff $\E Z>1$, where $p$ solves $p=\E p^X$.
+
+In the Erd\H os-Renyi random graph the number of neighbors of a node is $\text{Bin}(n-1,\fc dn)\approx \text{Pois}(d)$. In later levels we get $\text{Bin}(n-k,\fc dn)$ where $k$ is the number of nodes so far, but we can treat this as $n$ for $k$ small. The probability that any vertex is in a cycle goes to 0, so whp the local neighborhood will be a tree, and the distribution will be a Galton-Watson branching process with offspring distribution $\text{Pois}(d)$.
+
+\subsection{Local weak limit}
+I'll make precise what I mean by the distribution of the local neighborhood.
+
+We want a notion of convergence of distribution on a graph that cares about local structure. For this we define a metric on rooted graphs. %interested in local structure.
+%vague about
+%locally it looks like
+
+\begin{df}
+We say $X_n\to X$ weakly if for all continuous bounded functions, $\E f(X_n)\to \E f(X)$.
+\end{df}
+\begin{df}
+We say $(G,v)\cong (G',v')$ if there exists a graph homomorphism $\psi:V\to V'$, $\ph(v)=v'$, $(w,u)\in E$ iff $(\ph(w),\ph(u))\in E'$. 
+%~-
+
+Let $B_r(G,v)$ be the ball of radius $r$ around $v$. Say $(G,v)\cong_r (G',v')$ if $B_r(G,v)\cong B_r(G',v')$. 
+
+Define the distance by
+\begin{align}
+d((G,v),(G',v')) & = 2^{-\max\set{r}{r(G,v)\cong_r r(G',v')}}.
+\end{align}
+
+Let $I_n$ be uniformly chosen in $V$. We say $(G_n,I_n)$ converges \vocab{weakly in the local metric} (or in the sense of \vocab{local weak convergence}) to $(G,I)$,
+\begin{align}
+(G_n,I_n) \xra{\text{lwc}} (G,I)
+\end{align}
+%converges weakly in that metric.
+%weak convergence: distribution functions converge
+%generalization to more general random objects
+%locally finite, all vertices have finite degree, boils down to
+if $\Pj(B_r(G_n,I_n)=(g,v))\to \Pj(B_r(G,I)=(g,v))$ for all $(g,v)$.
+\end{df}
+%The limit is an infinite graph.
+
+Suppose that the graph $G_n$ is a $n\times n$ grid. For most vertices taken at random, the local neighborhood is a grid; the only exception are those near the boundary. As $n\to \iy$ the probability you pick a point close to the boundary tends to 0. So the local weak limit is the infinite grid (with, say the node $(0,0)$).
+
+What about a $d$-regular random graph? The local weak limit is an infinite $d$-regular tree.
+
+What about a $n$-level tree? Is the limit a $d$ regular tree? No, most of the nodes are leaves! The local weak limit is what's called a Cunopy tree. The root is a very atypical vertex; the typical vertices are the leaves.
+
+%next time: lw limit of configuration model 
+
+
+
+
+
+
+
+
+
