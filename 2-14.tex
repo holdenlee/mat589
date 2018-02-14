@@ -1,0 +1,189 @@
+\section{Component sizes}
+\fixme{(missed class 2-12)}
+
+We investigate the size of components of a random graph. Start from a vertex; it has binomially many neighbors; continue exploring from its neighbors. 
+
+The local neighborhood is like a Galton-Watson branching process. As you explore more, eventually the number of remaining vertices will decrease.
+
+%sum of iid random variables understand well
+Let $A_t$ be the active vertices at time $t$ and $U_t = n-A_t-t$ be the unexplored vertices.
+The $A_t$'s satisfy
+\begin{align}
+A_0&=1\\
+A_{t+1} &= A_t-1+W_t\\
+\text{where }W_t &\sim \text{Bin}(U_t,\fc dn)\approx \text{Pois}(d).
+\end{align}
+Letting $S_t$ be the total number of vertices explored, %(excluding the current one), 
+\begin{align}
+S_t &= \sumo it W_i\\
+A_t &= 1-t+S_t\\
+U_t&=n-1-S_t
+\end{align}
+
+The size of the component is $C = \min \set{t}{A_t=0} = \min\set{t}{S_t-t=-1}$.
+%d>1%, like a random walk.
+%increments are iid
+Let $\wt W_t = \text{Bin}(n,\fc dn)\approx \text{Pois}(d)$ iid, $\E \wt W_t>1+\de$, and $\wt S_t$ be defined with $\wt W_t$.
+ Then
+\begin{align}
+\Pj(\forall t: \wt S_t - t \ge 0) &>0
+\end{align}
+because it's a random walk with positive drift.
+
+Fix $k$. 
+\begin{align}
+\Pj(|C_v|=k) &= \Pj(\min\set{t}{S_t-t=-1}=k)\\
+&\to \Pj(\min\set{t}{\wt S_t - t=-1} = k)\\
+&= \Pj\pat{GW size $k$}\\ %?
+\Pj\pat{GW survives}&\le 1-\sumo k{\iy} \Pj(GW=k).
+\end{align}•
+
+We will show the size of the largest component is concentrated when $d>1$. We relate the size to the survival probability of a branching process.
+
+%first time it hits -1. For fixed $k$ get this.
+
+The idea of the argument is that as long as the branching process survives for a reasonably long time, it's likely to survive for a long time.
+
+Now $\Pj(\wt S_t - t\ge 0\forall t) = \Pj\pat{GW survives}$. 
+\begin{align}
+\Pj(|C_v|=k)
+&\le \Pj(S_k-k=-1)\\
+&\le \Pj(\wt S_k - k =-1) + \Pj(\wt S_k\le S_k)\\
+&\le e^{-ck}
+\end{align}•
+%at some point explore too many vertices
+for $k\le \ep n$. This holds as long as the number of unexplored vertices is small, $U_k\le n^{1-\de}$.
+\begin{align}
+\Pj(\min\set{t}{S_t-t=-1>\log^2 n} &=\Pj(|C_v|>\log^2n) \to \Pj\pat{$GW_d$  survives}=q\\
+\Pj(|C_v|=k) &\to \Pj(GW_n=k)\\
+%upper bound on probability size at least $\log^2 n$.
+1-\sumo kL \Pj(|C_v|=k)&\xra{n\to \iy} 1-\sumo kL (GW=k)\\
+&\xra{L\to \iy} \Pj\pat{GW survives}=q\\
+\Pj(L\le |C_v|<\log^2n) &\le \sum_{L=k}^{\log^2 n}e^{-ck} = O(e^{-cL}).
+%big, but also giant
+\end{align}
+We show these big components are also giant with high probability.
+\begin{align}
+\Pj(\log^2 n \le |C_v| \le \ep n)
+&\le o\prc n\\
+\Pj(\exists v: \log^2 n\le |C_v|\le 2n)&\to 0.
+\end{align}
+We show $\Pj(|C_v|>\ep n)\to q$. 
+We want to show whp there's only one giant component. We show that if 2 vertices are in giant components then whp they are in the same giant component. To show this, consider 2 exploration processes starting and $v$ and $u$.
+Consider if they are not in the same component.
+
+Let $A_v$ be the number of active vertices for $v$. Then whp $A_v\approx S_{n^{\fc 32}}-n^{\fc 32} \approx (d-1)n^{\fc 23}$.
+%random walk, fluctuations of size ...
+%We haven't checked to see if there are edges between those vertices.
+Also $A_u\approx (d-1)n^{\fc 23}$. Then
+\begin{align}
+\Pj\pat{no edges from $A_u$ to $A_v$}
+&= \Pj(\text{Bin}(A_uA_v, \fc{d}{n})=0)
+=\pa{1-\fc dn}^{((d-1)n^{\fc 23})^2}\approx e^{-cn^{\rc 3}}= o\prc{n^2}.
+%n^{\fc 43}
+\end{align}
+If by time $n^{\fc 23}$ they're still separate from each other, it's extremely unlikely that their boundaries won't have edges in common. The number of pairs of vertices between the two sides is much bigger than $n$.
+
+The probability we can find 2 vertices in a big component but not the same component has probability tending to 0.
+
+Now we show the fraction of vertices with $|C_v|>\log^2 n$  goes to $q$ whp.
+We use the same trick we've used several times before. 
+\begin{align}
+\rc n \#\set{v}{|C_v|>\log^2 n} \xra p q.
+\end{align}
+Pick $m=n^\ep$ vertices and explore to depth $\log^2n$. Since we haven't explored too many vertices, it doesn't change probabilities too much. Couple with iid random branching processes.
+
+%2nd biggest at most $\log^2$
+In fact the 2nd biggest component is at most $C\log n$ whp.
+
+%read from survival prob of branching process.
+Most of the components will be trees. A small number of them may also have a cycle. The giant component will be locally treelike, but if you look at a neighborhood of size $\log n$ you'll start to see lots of cycles. %subset behaves like expander graph.
+
+%Poisson with mean 1.
+%do same analysis. look at random walk that has mean 0.
+For the critical case, we have a random walk with mean 0. Random walks like that are recurrent; this implies you can't have a giant component.
+\begin{align}
+S_t-t &= \sumo st [\text{Pois}(1)-1]\\
+\Pj\pat{$GW_{\text{Pois}(d)}$ survives}&=0
+\end{align}
+We modify the exploration process. Imagine that after we explore component 1, we explore component 2, and so forth. 
+
+Let $N_t=\#\{\text{components by time $t$}\}$. Then $A_t=S_t-t+N_t$. Let $X_t=S_t-t$.
+%Renormalize the process $X_t$.
+We get a new component when we run out of active vertices, every time $A_t$ drops to $-1$. $X_t$ is what happens when we don't add in an extra vertex when we start a new component. So
+\begin{align}
+N_t &= \min_{s\le t} X_s.
+\end{align}
+Every time we hit a minimum, we've run out of vertices in that component, and need to start a new one.
+
+The size the the $k$th component is the difference between the hitting time of $-(k-1)$ and $-k$: $T_k-T_{k-1}$  where $T_k=\min\set{t}{X_t=-k}$.
+Another way to write this as the $k$th time $A_t$ goes to 0, and the sizes are the lengths of the excursions away from 0.
+
+Now
+\begin{align}
+\E[X_t-X_{t-1} | f_{t-1}]
+&=\E [\text{Bin}(U_t,\rc n) - 1|f_t]\\
+&= \fc{U_t}{n} - 1 = -\rc n (S_t+N_t)\\
+U_t &=n-S_t-N_t\\
+\Var(X_t-X_{t-1}|f_{t-1}) & = \Var(\text{Bin}(U_t,\rc n)|f_{t-1}) = U_t \rc n \pa{1-\rc n}<1.
+\end{align}
+This converges to a stochastic differential equation: Brownian motion minus a parabola.
+One way is to make it a martingale and use a martingale central limit theorem. They behave like sums iid random variables. I've been trying to massage things into behaving like iid random variables. Making a martingale is one way to do that.
+
+%Since we've made it into a martingale, we should work out how the term we've added on decays.
+Let 
+\begin{align}
+Z_t &= X_t + \rc n \sumo it (S_i+N_i)\\
+\fc{S_t}t &\approx 1 \text{ for large t}\\
+N_t&\le \wt O(\sqrt t) = o(t)\\
+\fc{S_t + N_t}{t} &\to 1\\
+\rc n \sumo it (S_i + N_i) &\approx \rc n \sumo ik i\\
+&\approx \fc{t^2}{2n}.
+\end{align}
+%$N_i=\min_{s\le i}X_s$. 
+%We know $N_t\le t$. But then %2T/n. 
+%Lindeberg-Feller central limit theorem, none of the increments are too big
+\begin{thm}[Martingale CLT]
+If $X_n$ is a martingale and
+\begin{align}
+\sumo in \Var(X_i-X_{i-1}|f_{i-1})&\approx n\\
+\Pj(\max|X_i-X_{i-1}| >\ep \sqrt n)&\to 0.
+\end{align}
+Then $\fc{X_nt}{\sqrt n}\xra{d} B_t$ as $n\to \iy$.
+\end{thm}
+The second condition is the same as in the Lindeberg-Feller central limit theorem; it says  none of the increments are too big. None should be the same order as the standard deviation. 
+%function central limit version
+
+All differences are Poisson plus a constant, so the second condition is satisfied. So $Z_t$ converges to a martingale.
+%go to infinity with $n$, at a slower rate. What's the right rate to get something interesting?
+%think about the extra term, which we calculated
+\begin{align}
+\Var(Z_t)&\approx t\\
+|Z_t|&\asymp t^{\rc 2}.
+\end{align}
+The drift term is $\fc{t^2}{n}$.
+The place where things are interesting are when these are the same order, $t^{\rc 2}\sim \fc{t^2}{n}$,  $t\sim n^{\fc 23}$. 
+\begin{align}
+Y_t&\asymp n^{-\rc 3} X_{tn^{\fc 23}}\\
+&= n^{\fc 23}\pa{Z_{tn^{\fc 23}} - \fc{tn^{\fc 23}}{2n}}\\
+&\xra{d} B_t - \fc{t^2}{2}.
+\end{align}
+%more and more steeply as $t\to \iy$.
+If $t$ is not so big, it looks like a Brownian motion perturbed a bit; it goes  more and more steeply to $-\iy$ as $t\to \iy$.
+We read off the component sizes.
+\begin{align}
+Q_t &= Y_t - \min_{s\le t} Y_s
+\end{align}•
+Because the walk gets steeper and steeper, it keeps getting new minima faster and faster. The only big components will be at the beginning of the process.
+
+Let $A_1\ge A_2\ge \cdots$ be the excursion lengths of $Q_t$. The largest component size is $A_1\sim n^{\fc 23}$.
+We rescaled time by a factor $n^{-\fc 23}$. The $n^{-\fc 23}$ is the right rescaling because we get a nontrivial process.
+%if we take larger rescaling, then drift dominates.
+
+$A_1,A_2,\ldots$ depend on $n$ but converge in distribution as $n\to \iy$. 
+%derivative of -t^2/2 is -t. The time it takes to reach a new minimum gets shorter. You can make that into a quantitative statement, which you need to make this a complete proof. 
+You don't get component sizes $\gg n^{\fc 23}$, but you do get components of size $n^{\fc 23}$. Their distribution, if we replaced $Q_t$ with the limiting process, we get some distribution of component sizes, $n^{\fc 23}(A_1^\iy > A_2^\iy>\cdots)$.
+%; that limiting distribution will be the limiting distribution of 
+
+
+%next: diameters of components, distances between typical points.
