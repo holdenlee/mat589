@@ -1,0 +1,168 @@
+\section{Distances in $G(n,\fc dn)$}
+
+If you take 2 random vertices, how far apart are they in terms of graph distance? I.e., what is the shortest path between them?
+
+Locally $G(n,\fc dn)$ looks like a branching process with $\Pois(d)$ offsprint, growth rate $d$. Letting $Z_r$ be the number of vertices up to depth $r$, $Z_r\sim d^r$.
+
+Just looking at the exponential growth rate, in order for $d^r \ge \ep n$, we need $r\ge (1-\ep)\log_d n$. 
+
+\begin{align}
+\E[Z_r|Z_{r-1}] &\le \E[\Bin(Z_{r-1}, \fc dn)|Z_{r-1}]\le d Z_{r-1}\\
+\implies
+\E Z_r &\le d^r.
+\end{align}
+%Upper bound because 2 vertices can connect to the same vertex.
+If $r=(1-\ep)\log_d n$ then $\E\sumz ir Z_i\le \sumo i{(1-\ep)\log_dn}d^i = O(n^{1-\ep})$.
+This shows an upper bound; it turns out this is actually the right bound.
+\begin{thm}
+If $d>1$, conditioned on $u,v$ being in the giant component,
+\begin{enumerate}
+\item
+$\fc{d(u,v)}{\log_d n}\xra p 1$.
+\item
+$\fc{\diam\pat{Giant}}{\log_d n}\in (1+\de, C)$ w.h.p. 
+\end{enumerate}
+\end{thm}
+Actually, with a more refined analysis we can show the latter converges to some constant $C_d$.
+
+We have to be more careful about the connection between the graph and the branching process---they are only close up to some radius. At large enough radius, it stops looking like a tree.
+
+\begin{lem}
+If $Z_n$ is a BP with offspring distribution $X$ and $\E X=\mu$, $\Var(X)=\si^2<\iy$, then $\mu^{-n} Z_n\to W$ a.s. and $\Pj(W>0)=\Pj\pat{BP survives}$. 
+\end{lem}
+\begin{proof}
+Recursively calculate
+\begin{align}
+\E[Z_r|Z_{r-1}]&=\mu Z_{r-1}\\
+\Var[Z_r|Z_{r-1}]%&=\Var[\sumo in X_i|Z_{r-1}]\\
+&=\si^2 Z_{r-1}\\
+\Var(\mu^{-r} Z_r - \mu^{-r+1}Z_{r-1})
+&= \E [\Var(\mu^{-r}Z_r - \mu^{-(r+1)}Z_{r-1}|Z_{r-1})]
++ \cancel{\Var(\E(\cdots | Z_{r-1}))}\\
+&= \E[\si^2 \mu^{-2r} Z_{r-1}] = \si^2 \mu^{-(r+1)}.\\
+\sumo r{\iy} \ve{\mu^{-r} Z_r - \mu^{-(r-1)}Z_{r-1}}_2 &<\iy\\
+%martingale
+\implies \mu^{-r}Z_r &\xra{\text{a.s.}}w\\
+1 = \E \mu^{-r}Z_r &\to \E W=1\\
+\Pj(W>0) &=a>0.
+\end{align}
+The reason for this calculation is to get the last part.
+If the branching process didn't survive, the limit is 0. We need to show that when it does survive, we get some nonzero process.
+
+%every vertex independent, each individually probability $\al$ of having dense enough subtree, where limited density is positive.
+\begin{align}
+\Pj(W>0) &>\E(1-\al)^{Z_r}\to \Pj(Z_r\not\to \iy)
+\end{align}
+Let $R=\min\set{r}{Z_r\ge M}$. Then $\Pj(W=0|R_m<\iy) \le (1-\al)^m$. 
+When the process survives, there is always such a level. Each time it's of size $\le M$, there's some fixed probability it died out. The probability that it always stays below and never dies out is 0. (Cf. A Markov chain with an absorbing state, if it never reaches the absorbing state it must be transient.)
+
+If the branching process survives, then $R_m<\iy$ w.p. 1. Then $\Pj(W=0)\le (1-\al)^m$.
+%we can choose any $m$ here
+
+So $\Pj(W=0,\,W\text{ survives})=0$.
+\end{proof}
+
+%\Var(X) = \E(\Var(X|Y)) + \Var(E(X|Y))
+
+The idea of coupling is as follows. Let $\wh X, \wh Y$ have the same probability distributions as $X$, $Y$. %be on the same probability spaces. 
+We want to maximize $\Pj(\wh X=\wh Y)$ in total variation distance
+\begin{align}
+d_{TV}(X,Y) &=\min_A \Pj(X\in A)-\Pj(Y\in A)\\
+&=\rc 2 \sum_n |\Pj(X=n) - \Pj(Y=n)|\\
+&= \min_{\text{coupling }\wh X,\wh Y} \Pj(\wh X \ne \wh Y).
+\end{align}•
+
+Another fact: if we have 2 sequences of random variables $(X_i)$, $(Y_i)$ and they are independent, then 
+\begin{align}
+d_{TV}(\sum X_i, \sum Y_i) &\le \sum_i d_{TV}(X_i,Y_i).
+\end{align}
+Construct the optimal coupling individually. The TV distances are the probabilities an individual one fails; use a union bound.
+
+I want to make more precise how the Erd\H os-Renyi graph is like a branching process, in terms of the total variation distance.
+%local neighborhood of a vertex
+
+We couple the first level, Binomial and Poisson. Then we can reveal the next level.
+%If each time we can successfully couple, then 
+Continuing, we a coupling of the first $r$ levels of the GW random process and the local neighborhood in the ER random graph. I want a quantifcation of when this starts to fail.
+
+For $\Pois(p)$ and $\text{Ber}(p)$,
+\begin{align}
+d_{TV} (\text{Ber}(p), \Pois(p))
+&= \rc 2 (|e^{-p}-(1-p)| + |pe^{-p}-p| + \Pj(\text{Pois}(p)\ge 2))=O(p^2)\\
+\implies 
+d_{TV}(\Bin(n,p), \Pois(np)) &\le O(np^2)
+\end{align}
+by thinking of $\Bin(n,p)$ as a sum of $n$ iid $\text{Ber}(p)$'s and $\Pois(np)$ as a sum of $n$ iid $\Pois(p)$'s. But we actually have $\Bin(n-k,p)$, so we consider
+%with $k$ extra trials
+\begin{align}
+d_{TV}(\Bin(n,p), \Bin(n-k,p))&\le kp.
+\end{align}
+(Bound by the probability that the last $k$ trials aren't all 0.)
+Putting together, \fixme{??}
+\begin{align}
+\Pj\pat{coupling fails with $k$ levels}
+&\le \sum_j O\pa{a_j \cdot \fc dn} + O\pa{n\cdot \fc{d^2}{n^2}}
+\le O\pa{\pa{\sumo ik Z_i}^2}.
+%O\pa{\rc n d^k} + O(d^k\cdot d\cdot \rc n) \le O(d^k/n) = o(1)$ if $k\le (1-\ep \log_dn$
+\end{align}•
+The main contribution comes from the last one.
+%number of vertices seen so far.
+%d^k
+This will work up to the point when $d^k$ is about $\sqrt n$.
+
+We can keep the coupling going with good probability until we see about $\sqrt n$ vertices.
+%swept under the carpet. 
+
+Given $f_r = \si(Z_1,\ldots, Z_r)$, What is $Z_{r+1}$ given $f_r$? 
+%2 edges connect to the same vertex.
+\begin{align}
+\Bin(Z_r (n-\sumo i r Z_i ),\fc dn) - ``\text{cycles}''
+\end{align}
+%$\E Y \approx dZ_r$, $Y-\E Y$ small.
+Once $Z_r$ is big, this is concentrated. 
+By the Chernoff bound,
+\begin{align}
+\Pj(|\Bin(Z_r,(n-\sum z_i), \fc dn)- \E(\cdot)|\ge x|f_r)
+&\le \exp\pf{-x^2}{2Z_r n \fc dn (1-\fc dn)}\\
+&= o\prc n, &x &\ge \sqrt{3d Z_r \ln n},
+\end{align}•
+%big constant times log n, take $x$ that is small compared to $Z_r$, and this fluctuation from the binomial won't matter much
+good if $Z_r \ge B\ln n$. 
+Run coupling up to $r=\pa{\rc 2 - \ep}\log n$ for both nodes. There are $(\rc 2 + \ep) \lg_d n$ nodes. Say there are $W_u n^{\rc 2+ \ep}$ and $W_v n^{\rc 2+\ep}$ nodes with $W_u,W_v>\de$. 
+%sum on order of $n$
+Then
+\begin{align}
+\Pj[\#\text{ connections}=0] &\le \Pj[\Bin(n^{1+\ep},\fc dn)=0]\le 
+(1-\fc{d}{n})^{\de^{2} n^{1-2\ep}}
+e^{-\de^2 n^{2\ep}}\to 0.
+\end{align}
+%Z_r \ge n^{\rc 2 - \ep}
+
+%To control the number of cycles: 
+After level $(\rc2 -\ep)\log_2 n$, we use another argument based on the fact that binomial random variables are concentrated around mean.
+
+We want to get to size $(\rc 2+\ep)\log_2n$ because of the birthday paradox. If we have $\sqrt n$ on either side, then about $O(1)$ vertices will be connected to each other, if we have more on either side, then whp some pair of vertices will be connected to each other.
+
+How big should the radius be before you start seeing cycles? At $\rc 2 \log_2 n$. 
+
+The number of cycles is about $\Bin\pa{\binom{Z_k}2, \pf dn^2}\approx \rc 2 \fc{Z_r^2} n\ll \fc{Z_r}n$.
+%\ll Z_k$.
+
+\begin{align}
+\Pj[d(u,v)\ge (1+\ep)\log_d|u,v\in\text{Giant}]&\to 0.
+\end{align}•
+
+%log n. some vertices 1+\de log n.
+%where did we use a typical vertex
+If we make $\de$ small enough, the constants in front of the branching process will both be $>\de$. This will be true for 2 randomly chosen ones. What if you take $n$, what is the smallest nonzero value you get? The minimum tends to 0. 
+There are some vertices for which the branching process survives but gets a very slow start, ex. it has one child for $\de \log_d n$ steps.
+This happens for a node with probability $(de^{-d})^{\de \log_d n} \approx n^{-\de(d-\log d)/\log d}$. %typical dstance $(1+\de)\log_n$
+%unlikely for a node
+%but happen fairly frequent
+It's like a branching program delayed
+$\de \log_d n$ steps.
+
+It comes down to the structure of the giant component. Take the part that's like an expander. Hanging off it are a bunch of trees, looking like subcritical branching proceeses (but you'll still get order $\log n$).%It's a well-connected graph plus t
+%subcritical bp's
+
+%scale-free graphs, loglog n
