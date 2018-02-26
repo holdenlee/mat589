@@ -1,0 +1,206 @@
+\chapter{Stochastic processes on random graphs}
+
+\section{Random walk on random graphs}
+
+Consider the random walk given by $P_{vu} = \rc{d_v} I(u,v)$ where $I(u,v)$ is the indicator variable for $uv$ being an edge.
+
+The stationary distribution is $\pi_v \sim \fc{d_v}{2|E|}$ We check that this satisfies detailed balance:
+\begin{align}
+\pi_vP_{v,u} &= \pi_u P_{u,v}
+=I(u,v).
+\end{align}
+On every edge of the graph, at stationarity, it's equally likely to go over the edge in each direction.
+
+Let $X_t$ be the probability distribution after $t$ steps. $X_t^v$ is the distribution when started at $t$.
+
+Question: how quickly does $X_t\to \pi$?
+For the Erd\H os-Renyi graph, we just consider the giant component.
+
+The standard quantity is mixing time in total variation distance.
+\begin{align}
+d_{TV}(X,Y) &= \rc 2 \sum |\Pj(X=k) - \Pj(Y=k)|.\\
+t_{\text{mix}}(\ep)&= \min\set{L}{\max_v d_{TV}(X_t^v, \pi)<\ep}.
+\end{align}
+%\text{mix}
+We'll also be interested in how $d_{TV}$ looks on the way down. Consider a sequence of growing random graphs.
+There are two possible cases:
+\begin{enumerate}
+\item
+Cutoff: $\fc{t_{\text{mix}}^{(n)}(\ep)}{t_{\text{mix}}^{(n)}(1-\ep)}$.
+
+This is what the picture looks like for the random $d$-regular.
+\item
+Gradual decrease: This is what the picture looks like for Erd\H os-Renyi random graph. It looks like this because there are a few vertices that are slow starting points for the Markov chain; if it started at a more typical point, there would be a cutoff.
+\end{enumerate}
+
+I'll state some of the main definitions and tools from the theory of Markov chains.
+
+Because the Markov chain is reversible, we can write it as follows. Let $D_\pi = \diag(\pi)$. $D_\pi^{\rc 2} PD_\pi^{-\rc 2}$ is symmetric so has all real eigenvalues. The biggest one is $\la_1$. If the graph is connected, the second one is strictly $<1$. There will only be an eigenvalue $\la_n=-1$ if the graph is bipartite. The graphs we're looking at won't be (whp). 
+\begin{align}
+1=\la_1>\la_2\ge \cdots \ge \la_n\ge -1.
+\end{align}•
+The spectral gap is $\ga = 1-(\la_2 \vee|\la_n|)$ (take the one with higher absolute value).
+(A way to get around this is to look at the lazy random walk, where with probability $\rc2$ the walk does nothing. The transition matrix is $\rc2 (I+P)$. This also gets around the graphs being bipartite. The chain is aperiodic if the graph is bipartite.)
+
+Running for $t$ steps corresponds to raising the transition matrix to the $t$th power.
+
+The ratio goes to 1 by the contribution of the first eigenvector; the rest decay exponentially,
+\begin{align}
+\fc{P_t(x,y)}{\pi(y)}&=\sumo jn f_j(x) f_j(y)\la_j^t = 1+\sum_{j=2}^n f_j(x)f_j(y) \la_j^t.
+\end{align}•
+In 1980, people said, there's nothing more to think about in terms of finite Markov chains.
+But what doesn't this take you is how long it takes for the distributions to be close together---the cutoff. It's only an asymptotic result. Persi Diaconis looked at this in terms of random walks on groups. The most famous example is shuffling a deck of cards. That brings a lot of representation theory of the symmetric group.
+
+But here we'll think about the structure of these random graphs.
+
+By Jensen's inequality,
+\begin{align}
+d_{L^2} (X_t^x, \pi) &=\sqrt{
+\sum_y \ab{\fc{P_t(x,y)}{\pi(y)}-1}^2 \pi(y)
+}\\
+&\ge \sum_y \ab{\fc{P_t(x,y)}{\pi(y)}-1}^2\pi(y) = 2d_{TV}(X_t^x,\pi).
+\end{align}
+Bounding the $L^2$ distance controls the $L^\iy$ distance. 
+\begin{thm}
+\begin{align}
+\pa{\rc{\ga}-1} \log \prc{2\ep}
+&\le 
+t_{\text{mix}}(\ep)
+\le \rc{\ga}\ln \prc{\ep\pi_{\min}}.
+\end{align}
+where $\pi_{\min}$ is the minimum probability of a state in the Markov chain.
+\end{thm}
+For a regular graph, $\pi_{\min}=\rc N$, and you get the mixing time up to a factor or $\rc{N}$. Both bounds are tight.
+\begin{df}
+The \vocab{conductance} is
+\begin{align}
+Q(A,B) &= \sumr{x\in A}{y\in B} \pi(x) P(x,y)\\
+&=\Pj(X_0^\pi\in A, X_1^\pi\in B).
+\end{align}
+The \vocab{conductance/Cheeger constant/bottleneck ratio} is
+\begin{align}
+\Phi:&= \min_{\pi(S)\le \rc 2}\fc{\min Q(S,S^c)}{\pi(S)}.
+\end{align}
+(This is $\Pj(X_1^\pi \in S^c|X_0^\pi\in S)$. Conditioned on starting in $S$, what's the probability you leave it in the next step?)
+\end{df}
+This is related to the surface-area-to-volume ratio.
+
+\begin{thm}[Jerrum-Sinclair]
+\begin{align}
+\fc{\Phi^2}2 \le \ga\le 2\Phi.
+\end{align}•
+\end{thm}
+In different cases, either the upper bound or the lower bound could be correct, up to constant factors.
+
+How do we relate this back to graphs? 
+\begin{df}
+A graph $G$ is a \vocab{$\de$-expander} (edge expander) if
+\begin{align}
+\min_{|S|\le \fc{|V|}{2}}
+\fc{|\pl S|}{|S|} 
+\end{align}
+where $|\pl S|=\#\set{(u,v)}{u\in S, v\in S^c}$.
+\end{df}
+For a regular graph, if it's an expander, the conductance is bounded below:
+\begin{align}
+Q(S,S^c) &= \sum_{a\in S, b\in S^c} \pi(a)P(a,b)
+\\
+&=\rc{d_n}|\pl S| \ge \rc{d^n} \de|S| = \fc{\de}d\pi(S)\\
+\implies \Phi &\ge \fc{\de}d\\
+\implies t_{\text{mix}} &\le
+\fc{d}{\de} \pa{\log n + \log \prc{\ep}}.
+\end{align}
+This is the best you can hope for because the most number of vertices you can reach in $t$ steps is $d^t$.
+
+\begin{thm}
+If $h$ is random $d$-regular ($d\ge 3$) then there exists $\de_d>0$ such that $G$ is $\de_d$-expander whp  and so $t_{\text{mix}} = O(\log n)$.
+\end{thm}
+We've bounded $\Pj(\#\text{edges }S,S^c = \ell)$ through the configuration model. This gives
+\begin{align}
+\Pj\pat{$G$ is not $\de$-expander}
+&\le \sumo k{\fc n2}\binom nk
+\sumz{\ell}{\de k} \Pj_{\text{config}}(E(S,S^c)=\ell)\\
+&\le \sumo k{\fc n2} \binom nk
+\sumz{\ell}{\de k} \binom{dk}{\ell}
+\binom{d(n-k)}{\ell}
+\ell%'
+M_{dk-\ell} M_{d(n-k)-\ell}\rc{M_{dn}}\\
+&=\cdots \to 0
+\end{align}
+using Stirling's formula lots of times.
+
+It turns out that $\la_2\sim 2\sqrt{d-1}/d$; if $d$ is large the spectral gap is large. It was an open question for  a long time. In about 2000 there was a 100-page proof of this asymptotic, $\la_2=\fc{2\sqrt{d-1}}d + o(1)$. 
+A few years ago, there was a proof that was short enough to actually read.
+
+These graphs are so nice that we can say more about them.
+
+What should the constant in front of the $\log n$ be?
+
+%Consider a random $d$-regular graph.
+Let $\rh$ be the root, $X_0=\rh$. 
+The speed of the random walk (in terms of the expected distance from the root) is $-\rc d + \fc{d-1}d$. Letting $D_t=d(\rh,X_t)$, $\fc{D_t}{t} \xra{\text{a.s.}} \fc{d-2}d$. (At the root the distance will only increase, but it will only go to the root a constant number of times.)
+
+If this were a good heuristic, how long would it take to be spread uniformly? We need $d(d-1)^{\ell-1}\approx n$, $\ell\approx \log_{d-1}n$, which is just the diameter of the graph. How long does it take until the random walk reaches this? Multiply by $\rc{\text{speed}}$, to guess $\fc{d}{d-2} \log_{d-1}n$. The random walk on the $d$-regular graph has cutoff around this time.
+
+We'll prove this two ways.
+
+First, look at the non-backtracking random walk. At each step, choose a uniform neighbor to go to, except it can't go to the one it just came from. ($Y_{t+1}\ne Y_{t-1}$.) The non-backtracking random walk on the $d$-regular tree keeps going down the tree.
+
+We can average over nonbackgracking random walks to say something about the original, $Y_{D_t}\stackrel d= X_t$. This is also true for any $d$-regular graph. 
+
+%``Go back to the previous step and choose neighbor \#2.''
+There are $d(d-1)^\ell$ non-backtracking walks of length $\ell$ in $T_d$. The same is true in $G$. We can have a 1-to-1 mapping of the two. We can map the infinite tree to $G$, $T_d\to G$ (CoverTree). You can map a walk on the tree to a walk on the graph, $\ph({}^{T_d}X_t) = {}^GX_t$. Thus it suffices to look at NB paths on the tree.
+
+\begin{align}
+\Pj(Y_t^v = u) &= \fc{\pat{\# NB path $v$ to $u$ of length $\ell$}}{d(d-1)^\ell}.
+\end{align}
+We worked this out when calculating the typical distance between 2 vertices.
+\begin{align}
+\pat{\# $\ell$-paths $u$ to $v$}
+&\sim \Pois\pf{d(d-1)^\ell}{n}.
+\end{align}
+If $\ell-\log_{d-1} n\to 0$, then the Poisson is concentrated,
+%We get a Poisson random variable whose mean is large and hence is concentrated.
+\begin{align}
+\fc{\#\ell\text{-path $u$ to $v$}}{d(d-1)^\ell}\xra p \rc n.
+\end{align}•
+The TV distance is
+\begin{align}
+d_{TV}(Y_t^v,\pi) 
+&= \rc 2 \sum_d|\Pj(Y_t^v=u) - \pi_u|\\
+&=  \sum_d\pa{\Pj(Y_t^v=u) - \rc{n}}^+\to 0.
+\end{align}
+where $x^+=x\wedge 0$ (the negative and positive parts are equal because they sum to 0).
+You have to be careful starting from a vertex close to a short cycle. Run for a short period of time, then it won't be close to a cycle. You can run this argument and get the same result.
+
+But we're interested in the actual random walk. 
+\begin{align}
+d_{TV} (X_t^v, \pi) 
+&= d_{TV}(\sum_x \Pj(D_t=\ell) Y_t^v,\pi)\\
+&\le \sum_\ell \Pj(D_t=\ell) d_{TV}(Y_t^v,\pi)\\
+&\le \Pj(D_\ell \le (1-\ep) \log_{d-1}(n)) + o(1)\to 0.
+\end{align}
+We only have to worry about when the backtracking walk has taken to few walk for the NB walk to mix. But we know $\fc{D_t}{t}\xra{\text{a.s.}} \fc{d-2}d$. 
+
+We need to say that before $\fc{d}{d-2}\log_{d-1}n$ the TV distance is big. If $t<(1-\ep)\fc{d}{d-2} \log_{d-1}n$, whp $D_t\le (1-\eph)\log_{d-1}r$, and so $X_t\in B_{(1-\eph) \log_{d-1}n}$ which only has $n^{1-\eph}$ vertices.
+
+Recall that the local neighborhood looks like a tree until around $\rc \log_{d-1}n$. The further we go down, the more cycles. We can even compute how many we expect to see. Let's say we get down to $(1-\ep)\log_{d-1}n$. We see more but not so many---for a typical path, I don't expect any of the vertices to be in a cycle.
+
+
+Let $X_t\sim \mu_t$.
+Suppose we ran the Markov chain to $t\approx (1-\ep)\fc{d}{d-2}\log_{d-1}(n)$. 
+$\mu_t = \wh \mu_t (1-\de) + \de v_t$, $\de=o(1)$, $\wh \mu_t(u)\le n^{-2\ep}$. 
+We have exponential decay in $L^2$ distance.
+%close to uniform on set $S$, but small measure, so still far from uniform measure. 
+\begin{align}
+d_{L^2}(\wh \mu_t, \pi)&\le n^{-2\ep}\\
+d_{L^2}(\wh \mu_{t}P_r, \pi) &\le \ga^rd_{L^2}(\wh \mu_t, \pi)\to 0\\
+\text{if }r &> C\ep \log_{d-1}n\\
+d_{TV}(X_{t+r}, \pi) &\le (1-\de) d_{TV}(\wh \mu_tP_r, \pi) + \de d_{TV}(v_tP_r, \pi)=o(1)
+\end{align}•
+Only need to run for a small amount of time to 
+make this go to 0.
+$\pa{\fc{d}{d-2} - \fc{\ep d}{d-2} + c\ep} \log_{d-1}n. $
+This concludes the second proof, which is also useful for Erd\H os-Renyi random graphs.
+%cover for ER graph from typical vertex.
+%random d-regular easier.
