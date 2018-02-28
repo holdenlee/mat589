@@ -1,0 +1,152 @@
+\fixme{
+Last time:
+
+\begin{align}
+s &= (1-\ep) \log_{d-1}(n)\\
+t&=(1-\ep)\fc{d}{d-\ep} \log_{d-1}n\\
+\mu_t &= (1-\de) \wh \mu_t + \de r_t\\
+\wh \mu_t(u) &= \rc n n^{\ep + o(1)}\\
+d_{L^2}(\wh\mu_t, \pi)&
+=\sqrt{\sum \ab{\fc{\mu_t(u)}{\pi(u)}-1}^2}
+\le O(n^\ep)\\
+d_{L^2}(\ub{\wh \mu_t P^r}{\mu_{t+r}}, \pi) &=O( \ga^r n^\ep)\\
+\mu_{t+r} &= (1-\de)\wh \mu_t P^r + \de v_tP^r.
+\end{align}
+%order $\ep\log n$
+}
+Consider a random walk on $G(n,\fc dn)$.
+
+\begin{thm}[Fountoutlakis, Reed 2006; Benjamini, Kozma, Warmuld]
+$t_{\text{mix}} \asymp \log^2n$. There is no cutoff.
+\end{thm}
+I'll do the lower bound $\log^2n$ but just prove an upper bound of $\log^3 n$. There are starting points which are really slow.
+
+\begin{thm}[BLPS17]
+For a typical location, there exists $s_d>0$,  %(BLPS17)
+\begin{align}
+\rc n \#\set{v}{d_{TV}(X_{(s+\de)\log n}^u, \pi)<\ep} &\xra p 1\\
+\rc n \#\set{v}{d_{TV}(X_{(s-\de)\log n}^u, \pi)<\ep} &\xra p 0
+\end{align}
+\end{thm}
+
+There are ``tails'' of log length $\de \log n$.
+If the random walk hasn't left the tail, it can't have mixed. 
+\begin{align}
+d_{TV}(X_t^v, \pi) &\ge \Pj(X_t^v\in A)-\pi(A)
+\end{align}
+Letting $A$ be the tail, $\pi(A)=o(1)$. It suffices to show $\Pj(X_t^v\in A)$ is large for $t=\al \log^2n$. % on the order of $\log^2 n$.
+
+How long does it take a random walk on a line, reflecting at 0, to get to $m$?  We can consider the random walk $S_t$ on the line.
+Let $H_m$ be the hidding time.  $S_t$ is a martingale, and so is $S_t^2-t$, so 
+\begin{align}
+\E(S_{H_m}^2-H_m)&=0\\
+\E H_m &=\E S_{H_m}^2 = m^2
+\end{align}•
+You can relate this to the time it takes Brownian motion to leave.
+\begin{align}
+\lim_{m\to \iy} \fc{H_m}{m^2}\xra d H,
+\end{align}
+where $H$ is the first hitting time of $\{1,-1\}$ of Brownian motion.
+
+A simple random walk in 1 dimension doesn't have a cutoff. The limit is %something like 
+Brownian motion, which diffuses gradually.
+
+If $p\asymp 1$, then $t_{\text{mix}}=2$. If $P\propto n^{-(1-\al)}$, $\al \in (0,1)$, then $\E d_v=n^\al$. In the first step, get $n^\al$, in the second, get $\approx n^{2\al}$, etc. Because of the high branching factor, the chance that you backtrack is $\approx n^{-\al}$. 
+Suppose $k<\rc \al < k+1$.
+Level $k$ has $\approx n^{\al\cdot k}$ vertices.
+Using $n\fp k\approx p^k$, the number of paths of length $k+1$ is 
+\begin{align}
+\E \#\pat{paths length $k+1$}
+&\approx n^k p^{k+1}\\
+&=n^k (n^{-(1-\al)})^{k+1}\\
+&=\rc n n^{\al(k+1)}\to \iy.
+%\to 1.
+%about 1 path of thet lenghts e
+\end{align}•
+This is also concentrated by looking at 2nd moments. The chance of taking any particular path is
+\begin{align}
+P_{uv}^{k+1} &= \#\pat{path of length $k+1$}\cdot (n^{-\al})^{k_1} \approx n.
+\end{align}
+%How to say say it doesn't take too long?
+We get $t_{\text{mix}}\le k+1$, $t_{\text{mix}}> k$.
+Poisson mean.
+
+If $\al=\rc{k+1}$, 
+\begin{align}
+d_{TV}(X_{t+1},\pi) &\to \rc 2\E |N-1|\in (0,1),&N\sim \Pois(1).
+\end{align}
+%This is a constant in $(0,1)$ because
+To see this,
+\begin{align}
+d_{TV}(X_{t+1},\pi) &= \rc 2 
+\sum_u 
+|P_{vu}^{k+1}-\rc n| = 
+\rc 2 \sum_u  \rc n |\#\pat{path $u$ to $v$} - 1|.
+\end{align}
+%empirical number of path s from u to v.
+
+For $p\approx \fc{C\log n}{n}$, the behavior is similar to a 
+random $d$-regular graph because you make few moves that backtrack. There will be a cutoff.
+
+What value of $p$ can you take, where $\E d_v = p(n-1)$, so that it doesn't look like what you get in a $d$-regular graph?
+I'm not sure when is big enough. A constant value is not big enough. $\log n$ is big enough. Where in between does the transition happen? What average degree do you need so you don't have a long path? The length is $\de_d\log n$.
+How big $\de$ do you need so this is $>\sqrt{\log n}$?
+
+The bigger the average degree, the easier things get. Things become more concentrated, pathological cases become rarer. %Most vertices 
+A simple random walk on the tree with that average degree looks like a nonbacktracking walk. 
+
+The 2-core of a graph is defined as follows.
+\begin{itemize}
+\item
+Iteratively remove degree 1-vertices.
+\item 
+The remainder is the 2-core. 
+Equivalent, the 2-core consists exactly of vertices in a cycle, or in paths connecting cycles.
+\end{itemize}
+The graph consists of the 2-core plus things hanging off. 
+%Conditioned on telling all the degrees, the uniform graph given that degree sequence.
+
+The Erd\H os-Renyi is the uniform graph given $\{d_v\}$. Suppose we start with the configuration model and iteratively remove degree-1 vertices.
+We've removed a vertex of degree 1 and decreased the degree of the neighboring vertex by 1. At the end of the process we still have a configuration model.
+
+The 2-core is a configuration model with degrees $\ge 2$. Let $M$ be the vertices with degree $\ge 3$. Consider the graph on $M$ obtained by contracting the original. It will be an expander. We will extract what this says about the original graph.
+
+\begin{thm}[Structure theorem for giant of $G(n,\fc dn)$ (Diny, Lubotzky, Peres $14\pm 2$)]
+Let $\te e^{-\te} = de^{-d}$, $\te <1<d$, $\La = N(d-\te, \rc n)$, $D_u \sim \Pois(A)$ iid.
+\begin{itemize}
+\item
+Form $M=\set{u}{D_u\ge 3}$. Construct $G_M$ configuration model on $M$, with degrees $D_u$.
+\item
+Replace each edge in $M$ with path of $\text{Geom}(1-\te)$ iid.
+%Condition on going 
+\item
+Add GWBP tree to each vertex with offspring $\Pois(\te)$.
+\end{itemize}
+The resulting graph $C_n$ is contiguous with respect to $\text{Giant}_n$, i.e., if $\Pj(C_n\in A_r)\to 0$, then $\Pj(\text{Giant}_n \in A_n)\to 0$.
+\end{thm}
+If you condition a Galton-Watson process with degree $\Pois(d)$ on going extinct, you get a Galton-Watson process with degree $\Pois(\te)$.
+
+\begin{itemize}
+\item
+Upper bound $O(\log^3n)$
+\item
+Conductance of $\Phi=\Phi(C_n) \ge \fc{C}{\log n}$. 
+\end{itemize}
+To get $O(\log^2n)$ you have to be more careful.
+
+Suppose we have an edge $(u,v)\in G_m$. Let $R_{uv}$ be the path connecting $u,v$ in $M$ with the BP's hanging off. The branching process has exponential tails, so $\Pj(|R_{uv}|>r) \le e^{-cr}$. 
+Let $Y$ be the size of a $\Pois(d)$ BP. Then $\Pj(Y>r) \le e^{c'r}$. Then $\E e^{cY}<1+\de$, and 
+\begin{align}
+\E e^{c|R_{uv}|}
+&=\E e^{c\sumo i{\text{Geom}} Y_i}\\
+&= \E (1+\de)^{\text{Geom}(1-\de)}<\iy.
+%finite exponential moments
+\end{align}•
+Take a union bound to get $\max |R_{uv}|\le C\log n$ whp,  $\max \sum_{u:uv\text{ edge}} |R_{uv}\le C\log n$.
+
+We bound the conductance. Let $S\subeq C_n$, $\pi(S)\le \rc 2$, $E(S,S^c)\ge\fc{\pi(S)}{\log n}$. If $|S\cap M| \le \fc M2$.
+(We can assume $S$ is connected: if union of disocnnected parts, take the one with the worst conductance.) What fraction of $S$ can you have not in $S\cap M$?
+
+If $|S\cap M|\le \fc M2$, $\fc{|S|}{|S\cap M|}\le \fc{C}{\log n}$. %each component log n size. outside is at most log n times inside.
+Whp $E(S,S^c)\ge \fc{\de}{\log n}|S|$. Then $\Phi\ge \fc{C}{\log n}$ so $\ga > \fc{C}{\log^2n}$ so $t_{\text{mix}}\le \log \prc{\pi_{\min}} = \rc \ga$.
+%>M/2
