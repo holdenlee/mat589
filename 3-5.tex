@@ -1,0 +1,169 @@
+For random walks on the Erd\H os-Renyi graph $G(n,\fc dn)$, 
+we've shown that $t_{\text{mix}}\ge c\log^2 n$, $t_{\text{mix}}\le c\log^3 n$. 
+We did this through a structure theorem for random graphs (it can be obtained by starting with $M$ with vertices of degree $\ge 3$, replacing edges with paths  and adding trees).
+The bottleneck comes from vertices that are hanging off.
+
+Consider instead starting at a uniform vertex $I$ of $C_n$. What is $d_{TV}(\Pj(X_t^I), %\in \cdot |I)
+\pi)$?
+Let $\wt C_n$ be such that each 
+$R_{u,v}$ with $|R_{u,v}|>C\log \log n$ is replaced %$R_{n,v}$ with
+by a single edge. 
+
+What is the conductance of $\wt C_n$?
+%M expander and each size 
+Using that $M$ is an expander, the conductance of $\wt C_n$ is
+\begin{align}
+\Phi_{\wt C_n} 
+&\ge \fc{C}{\log\log n}\\
+\ga_{\wt C_n} &\ge \fc{C}{(\log\log n)^2}\\
+t_{\text{mix}} &\le \log \prc{\pi_{\min}} \ga_{\wt C_n}\\
+&\le C\log n (\log \log n)^2.
+\end{align}
+We will couple the walk on $C_n$ with the walk on $\wt C_n$. 
+Let $A=\bigcup_{|R_{n,v}| > C\log \log n} R_{u,v}$. Then
+\begin{align}
+\#\set{(u,v)}{|R_{u,v}| > C\log\log n} &\le
+(\log^{-10} n) n\\
+\pi(A) &\le \log^{-8}(n).
+\end{align}
+Running for time $\log^2 n$ whp we won't hit one of these points.
+%We'd like to say: if we started at the stationary distribution this would be $\pi(A)$. 
+\begin{align}
+\sumz t{\log^2n} \Pj(X_t^I\in A)
+&=\sumz t{\log^2n} \rc n \sum_{v\in C_n}
+\Pj(X_t^v\in A)\\
+&\le \sumz t{\log^2n} \ub{\fc{2|E|}{n}}{\le C}
+\ub{
+\ub{\fc{d_v}{2|E|}}{\pi_v} 
+\sum_{v\in C_n} \Pj(X_t^v\in A)
+}{=\Pj(X_t^\pi \in A)}\\
+&\le C\sumz t{\log^2 n}\pi(A) \le C\log^{-6}(n).
+%
+\end{align}
+It's not too different starting from the uniform vs. stationary distribution. The biggest ratio is a factor $\log n$, and goes in the right direction for us. This allows us to bound the probability of hitting $A$.
+\begin{align}
+\Pj(
+\Pj(\exists 0\le t\le \log^2 n, 
+X_t^I\in A|I) 
+\ge \log^{-5}n
+)&=o(1)
+\end{align}
+For almost all starting points, we're not going to hit $A$, so we can couple the two chains.
+Let $B$ be the set of good starting points,
+\begin{align}
+B&=\set{v}{\Pj(\exists 0\le t\le \log^2 n, X_t^v\in A)\le \log^{-5}n}.
+\end{align}
+%same with prob at least log^{-5}n.
+Let $t=C\log n(\log \log n)^2$ and $\wt X$ be the walk on $\wt C_n$. For $v\in B$,
+\begin{align}
+d_{TV}(\wt X_t^v, X_t^v) &\le \log^{-5}n\\
+d_{TV}(\wt X_t, \wt \pi_{\wt C_n})&\le \ep\text{at time $t$.}\\
+d_{TV}(\pi, \wt \pi) &=o(1)\\
+\implies 
+d_{TV}(X_t^v, \pi) &\le \ep + o(1)
+\end{align}
+by the triangle inequality.
+\begin{thm}
+Whp there exists $H\subeq \text{Giant}_n$ such that $\pi(H)=1-o(1)$. For all $v\in H$, $d_{TV}(X_t^v, \pi)\le \ep$ for $t\ge C_\ep \log n (\log \log n)^2$. 
+\end{thm}
+This isn't the best result you can prove. For most starting point, the mixing time is a constant. There is a shar[ cutoff at $S_d\log n$; beyond it, the TV distance will be $o(1)$. The proof is along the same lines.
+
+The idea is that you start at a random vertex $v$, and explore its neighborhood. It has branching rate $d$. We have to explore about $\log_d n$ to explore everything. But the tree is not uniform, some vertices are more likely to be hit than others. There are parts of the tree where you can be pretty sure the random walk won't go down. Rather than exploring everything, keep exploring the subtree until its size is order $n$, or just before that. Couple the graph with a GWBP on the tree. Analyze what's happening on the tree, analyze how far it is from its stationary distribution in $L^2$. Use the conductance bound and the same argument.
+%use the conductae
+
+We lost $(\log\log n)^2$ because we used the spectral gap at the beginning. But we know what the random walk looks like on trees; keep it going until at $n^{1-\ep}$, then use what we know about the spectral gap.
+
+\section{Infection models SIR/SIS}
+%There are 
+These have been studied in many different areas, and are called different things in different areas.
+SIR is susceptible/infected/removed. There is a pathogen. At the beginning everyone is susceptible, some are infected, infected people can infect susceptible. They are them removed, the optimistic version is that they build up antibodies and are cured, the pessimistic version is that they're dead.
+
+In the SIS model (contact process), people can become infected again. This can go on for a much longer time.
+
+How many vertices get infected? How much time does it take? How does this depend on the parameters of the model?
+
+SIR is simpler, so we start with that.
+\subsection{SIR model}
+We'll talk about the mean field model first.
+``Mean field'' means that there's no geometry to the interaction. Every vertex is interacting equally with every other one. Ex. in statistical mechanics all particles interact equally. The interaction graph is the complete graph.
+
+\begin{itemize}
+\item
+Infected vertices are removed at rate 1.
+\item
+Each infected vertex infects a susceptible vertex of rate $\fc{\la}{n}$.
+\end{itemize}
+Let $S_t,I_t,R_t$ be the number of S/I/R in the population at time $t$.
+Let $\wh S_t$ be the number susceptible after $k$ events, i.e., infections or removed.
+\begin{align}
+\Pj(\wh I_{k+1} - \wh I_k = 1|f_k)
+&= \fc{\wh S_k \wh I_k \fc{\la}n}{\wh S_k \wh I_k \fc{\la}n + \wh I_k}\\
+&=\fc{\wh S_k \la}{\wh S_k\la+n}\\
+\Pj(\wh I_{k+1} - \wh I_k |f_k)&=\fc{n}{\wh S_k \la + n}
+\end{align}
+Will a lot of people be infected, or will it die out after a few steps?
+This is doing a random walk, it can either increase or decrease by 1 at each step.
+%To think about how it begins, 
+What is the sign of the drift at the beginning? 
+\begin{align}
+\E[\wh I_{k+1}-\wh I_k | f_k]
+&=\fc{S_k \la - n}{S_k \la + n}, %&k=0, S_0=n-1.
+\end{align}
+where infection is at rate $\la$ and removal is at rate $1$. At $k=0$, $S_0=n-1$, and $\fc{n\la - n }{n\la + n}=\fc{\la-1}{\la+1}$. The critical value is $\la_c=1$. 
+Together it's a $1+\la$-rate process (with probability $\fc{1}{1+\la}$ put a circle, with probability $\fc{\la}{1+\la}$ put a cross).
+%each infected person infecting more than 1 person.
+%biased rand walk not returning to origin
+
+\begin{thm}
+If $\la>1$, there exists $\ep_\la>0$ such that 
+\begin{align}
+\Pj\pa{\text{total number infected}\ge \ep n}&\ge \ep.
+\end{align}
+\end{thm}
+For $k<\ep n$, $\wh S_k \ge (1-\ep) n$; the drift is $\ge \fc{(1-\ep)\la n-n}{(1-\ep) \la n + n}$.
+It stochastically dominate a random walk with drift $\de$. There's a constant probability it never returns to the origin.
+%number infected grows exponentially, up until you get a linear fraction.
+
+%gaps between times vary
+%if lots infected, short period of time
+%from POV of analysis it's easier to think of 1 at a time.
+If $\la<1$, then $\Pj(\text{total infected}>t)\le e^{-ct}$. %There's some probability the first person doesn't affect everyone and the pandemic's over, etc.
+What fraction of the total population gets infected? Once you normalize, it's not really random.
+Let $\wt S_\al = \fc{\wh{S}_{\al n}}n$.
+It takes 2 steps for susceptible to become removed, 1 step to be infected.
+\begin{align}
+\wh I_k + 2\wh R_k &=k\\
+\wh S_k + \wh I_k + \wh R_k &=n\\
+\implies \wh S_k &= n + \fc k2 - \fc 32 \wh I_k\\
+\E (\wh I_{k+1} - \wh I_k|f_k)
+&=\fc{\la(n+\fc k2 - \fc 32 \wh I_k) - n}{\la(n+\fc k2 - \fc 32 \wh I_k) + n}\\
+(k=\al n)\quad
+\E (\wt I_{\al+\rc n} - \wt I_\al | f_{\al n})
+&=\rc n \fc{\la (1+\fc{\al}{2} - \fc 32 I_\al)-1}{\la (1+\fc{\al}2 - \fc 32 I_\al)+1}.
+\end{align}
+%Rearranging,
+%each step average out. 
+This should just be the derivative of the process.
+\begin{align}
+\wt I_\al &\approx f(\al)\\
+f'(\al) &= \fc{\la (1+\fc{\al}{2} - \fc 32 f(\al))-1}{\la (1+\fc{\al}2 - \fc 32 f(\al))+1}\\
+f(0)&=0.
+\end{align}
+%total number of steps is twice the number removed, or twice the number ever infected.
+If $\al^*=\min\set{\al>0}{f(\al)=0}$, 
+%most calcs are bookkeeping
+then 
+\begin{align}
+\fc{\text{total infected}}n \xra p \fc{\al^*}2,
+\end{align}
+conditioned on linear sized infection.
+
+The main thing I swept under the carpet is how to go from a random process to a smooth deterministic function.
+\begin{align}
+\wh I_{(\al+\ep)n} - \wh I_{\al n}
+&= \sum_{k=\al n}^{(\al+\ep)n-1} 
+\wh I_{k+1}-\wh I_k \\
+&=\sum\ub{(\wh I_{k+1} - \wh I_k)
+ - \E[\wh I_{k+1} - \wh I_k|f_k]}{\text{martingale}} + \ub{\sum_k \E [\wh  I_k - \wh I_k |f_k]}{\approx \ep n \E[\wh I_{\al n+1}-I_{\al n}|f_{\al n}]}.
+\end{align}
+They're not independent but are close. Once you renormalize, you can approximate by continuous.
